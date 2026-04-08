@@ -53,7 +53,7 @@ export default function HomePage() {
       {/* Hero */}
       <SectionWrapper>
         <div className="flex flex-col gap-6">
-          <h1 className="font-display text-[56px] font-extrabold leading-[1.05] tracking-[-0.04em] text-text">
+          <h1 className="font-display text-[32px] sm:text-[44px] md:text-[56px] font-extrabold leading-[1.05] tracking-[-0.04em] text-text">
             SIGNALS BEFORE{" "}
             <span className="text-accent">STORIES.</span>
           </h1>
@@ -70,8 +70,8 @@ export default function HomePage() {
       </SectionWrapper>
 
       {/* Stat Grid — overlapping hero */}
-      <SectionWrapper delay={70} className="-mt-6 ml-12">
-        <div className="grid grid-cols-4 gap-[2px] overflow-hidden rounded-[10px] border border-border bg-border">
+      <SectionWrapper delay={70} className="-mt-6 ml-0 md:ml-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-[2px] overflow-hidden rounded-[10px] border border-border bg-border">
           {STATS.map((stat) => (
             <div
               key={stat.label}
@@ -103,7 +103,7 @@ export default function HomePage() {
 
       {/* Ticker */}
       <SectionWrapper delay={210}>
-        <div className="-mx-9">
+        <div className="-mx-4 md:-mx-9">
           <Ticker />
         </div>
       </SectionWrapper>
@@ -175,7 +175,7 @@ export default function HomePage() {
             {FALLBACK_POSTS.map((post, i) => (
               <div
                 key={post.title}
-                className="flex items-start gap-4 px-6 py-4"
+                className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 px-4 sm:px-6 py-4"
                 style={{
                   animation: `row-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms both`,
                 }}
@@ -193,7 +193,7 @@ export default function HomePage() {
                     {post.description}
                   </span>
                 </div>
-                <span className="ml-auto shrink-0 font-mono text-[10px] text-text-faint">
+                <span className="sm:ml-auto shrink-0 font-mono text-[10px] text-text-faint">
                   {post.pubDate}
                 </span>
               </div>

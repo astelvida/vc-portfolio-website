@@ -75,7 +75,7 @@ export default function AboutPage() {
               {CAREER.map((item, i) => (
                 <div
                   key={item.phase}
-                  className="flex items-center gap-4 px-6 py-4"
+                  className="flex items-center gap-3 md:gap-4 px-4 md:px-6 py-4"
                   style={{
                     animation: `row-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms both`,
                   }}

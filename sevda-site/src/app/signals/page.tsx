@@ -52,17 +52,13 @@ export default function SignalsPage() {
           </div>
 
           {/* Table Header */}
-          <div className="grid grid-cols-[2fr_0.7fr_0.7fr_0.8fr_1fr_0.8fr] gap-4 border-b border-border px-6 py-2.5">
-            {["COMPANY", "SSI", "Δ", "THESIS", "HQ", "HEAT"].map(
-              (header) => (
-                <span
-                  key={header}
-                  className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-faint"
-                >
-                  {header}
-                </span>
-              )
-            )}
+          <div className="grid grid-cols-[2fr_0.7fr_0.7fr_0.8fr] md:grid-cols-[2fr_0.7fr_0.7fr_0.8fr_1fr_0.8fr] gap-2 md:gap-4 border-b border-border px-3 md:px-6 py-2.5">
+            <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-faint">COMPANY</span>
+            <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-faint">SSI</span>
+            <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-faint">Δ</span>
+            <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-faint">THESIS</span>
+            <span className="hidden md:block font-mono text-[10px] font-semibold tracking-[0.06em] text-text-faint">HQ</span>
+            <span className="hidden md:block font-mono text-[10px] font-semibold tracking-[0.06em] text-text-faint">HEAT</span>
           </div>
 
           {/* Table Body */}
@@ -70,7 +66,7 @@ export default function SignalsPage() {
             {SIGNALS.map((signal, i) => (
               <div
                 key={signal.company}
-                className="grid grid-cols-[2fr_0.7fr_0.7fr_0.8fr_1fr_0.8fr] items-center gap-4 px-6 py-3.5"
+                className="grid grid-cols-[2fr_0.7fr_0.7fr_0.8fr] md:grid-cols-[2fr_0.7fr_0.7fr_0.8fr_1fr_0.8fr] items-center gap-2 md:gap-4 px-3 md:px-6 py-3.5"
                 style={{
                   animation: `row-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms both`,
                 }}
@@ -94,10 +90,10 @@ export default function SignalsPage() {
                 >
                   {signal.thesis}
                 </span>
-                <span className="font-body text-sm font-light text-text-muted">
+                <span className="hidden md:block font-body text-sm font-light text-text-muted">
                   {signal.hq}
                 </span>
-                <div className="flex items-center gap-1.5">
+                <div className="hidden md:flex items-center gap-1.5">
                   <span className="relative flex h-1.5 w-1.5">
                     <span
                       className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${signal.heat === "HOT" ? "bg-accent" : "bg-[#F59E0B]"}`}

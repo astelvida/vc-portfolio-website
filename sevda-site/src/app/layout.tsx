@@ -74,7 +74,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-body">
         {/* Status Bar */}
         <div className="w-full border-b border-border bg-surface">
-          <div className="mx-auto max-w-[1100px] px-9 flex items-center justify-between py-2">
+          <div className="mx-auto max-w-[1100px] px-4 md:px-9 flex items-center justify-between py-2">
             <div className="flex items-center gap-3 font-mono text-[9px] tracking-[0.06em] text-text-muted">
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5">
@@ -83,10 +83,10 @@ export default function RootLayout({
                 </span>
                 SYSTEM ACTIVE
               </span>
-              <span className="text-text-faint">|</span>
-              <span>78 TRACKED</span>
-              <span className="text-text-faint">|</span>
-              <span>3 THESES LIVE</span>
+              <span className="hidden md:inline text-text-faint">|</span>
+              <span className="hidden md:inline">78 TRACKED</span>
+              <span className="hidden md:inline text-text-faint">|</span>
+              <span className="hidden md:inline">3 THESES LIVE</span>
               <span className="text-text-faint">|</span>
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5">
@@ -96,7 +96,7 @@ export default function RootLayout({
                 SOURCING
               </span>
             </div>
-            <div className="flex items-center gap-3 font-mono text-[9px] tracking-[0.06em] text-text-muted">
+            <div className="hidden sm:flex items-center gap-3 font-mono text-[9px] tracking-[0.06em] text-text-muted">
               <span>LDN / BUH</span>
               <span className="text-text-faint">|</span>
               <LiveClock />
@@ -106,14 +106,14 @@ export default function RootLayout({
 
         {/* Navigation */}
         <nav className="w-full border-b border-border bg-surface">
-          <div className="mx-auto max-w-[1100px] px-9 flex items-center justify-between py-3">
+          <div className="mx-auto max-w-[1100px] px-4 md:px-9 flex items-center justify-between py-3">
             <Link
               href="/"
               className="font-display text-sm font-bold tracking-[-0.04em] text-text"
             >
               SEVDA ANEFI
             </Link>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3 md:gap-6">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -129,12 +129,12 @@ export default function RootLayout({
 
         {/* Main Content */}
         <main className="flex-1">
-          <div className="mx-auto max-w-[1100px] px-9 py-9">{children}</div>
+          <div className="mx-auto max-w-[1100px] px-4 py-6 md:px-9 md:py-9">{children}</div>
         </main>
 
         {/* Footer */}
         <footer className="w-full border-t border-border bg-surface">
-          <div className="mx-auto max-w-[1100px] px-9 py-6 flex items-center justify-between">
+          <div className="mx-auto max-w-[1100px] px-4 md:px-9 py-6 flex items-center justify-between">
             <span className="font-mono text-[10px] tracking-[0.06em] text-text-muted">
               &copy; {new Date().getFullYear()} SEVDA ANEFI
             </span>
