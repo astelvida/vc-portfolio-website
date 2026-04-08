@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F7F5F0;
+  --surface: #FFFFFF;
+  --border: #E0DDD6;
+  --border-subtle: #F0EDEA;
+  --border-hover: #C8C5BE;
+  --accent: #E63312;
+  --accent-bg: rgba(230, 51, 18, 0.08);
+  --text: #111111;
+  --text-muted: #999999;
+  --text-faint: #CCCCCC;
+  --success: #22C55E;
+  --thesis-cai: #E63312;
+  --thesis-inf: #10B981;
+  --thesis-vai: #6366F1;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-hover: var(--border-hover);
+  --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-bg);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+  --color-success: var(--success);
+  --color-thesis-cai: var(--thesis-cai);
+  --color-thesis-inf: var(--thesis-inf);
+  --color-thesis-vai: var(--thesis-vai);
+  --font-display: var(--font-syne);
+  --font-body: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains-mono);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes panel-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes row-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(230, 51, 18, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(230, 51, 18, 0);
+  }
+}
+
+@keyframes conviction-bar {
+  from {
+    width: 0%;
+  }
+}
