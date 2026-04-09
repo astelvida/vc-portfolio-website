@@ -4,6 +4,7 @@ import { AnimatedNumber } from "@/components/animated-number";
 import { Ticker } from "@/components/ticker";
 import { ConvictionBar } from "@/components/conviction-bar";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { CategoryBadge } from "@/components/category-badge";
 import { THESES } from "@/data/theses";
 
 export const metadata: Metadata = {
@@ -40,12 +41,6 @@ const FALLBACK_POSTS = [
     categories: ["Analysis"],
   },
 ];
-
-function categoryBadgeClass(category: string): string {
-  if (category === "Framework") return "bg-thesis-cai/8 text-thesis-cai";
-  if (category === "Memo") return "bg-thesis-inf/8 text-thesis-inf";
-  return "bg-thesis-vai/8 text-thesis-vai";
-}
 
 export default function HomePage() {
   return (
@@ -180,11 +175,10 @@ export default function HomePage() {
                   animation: `row-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms both`,
                 }}
               >
-                <span
-                  className={`mt-0.5 shrink-0 rounded px-2 py-0.5 font-mono text-[10px] font-semibold ${categoryBadgeClass(post.categories[0])}`}
-                >
-                  {post.categories[0]}
-                </span>
+                <CategoryBadge
+                  category={post.categories[0]}
+                  className="mt-0.5 shrink-0"
+                />
                 <div className="flex flex-col gap-1">
                   <span className="font-display text-sm font-bold tracking-[-0.04em] text-text">
                     {post.title}

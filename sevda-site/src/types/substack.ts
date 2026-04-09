@@ -5,4 +5,6 @@ export interface SubstackPost {
   pubDate: string;
   categories: string[];
   thumbnail: string | null;
+  slug: string;
+  content: string;
 }
