@@ -1,6 +1,16 @@
 # sevda-site
 
+> **Superseded by [`sevda-website`](../../sevda-website).** This was the initial scaffold. Active development is in `~/projects/sevda-website`.
+
 Next.js 15 portfolio site for Sevda Anefi — early-stage European AI investor.
+
+## Commands
+
+```bash
+npm run dev       # Dev server
+npm run build     # Production build
+npm run start     # Serve production build
+```
 
 ## Design System: Grid Breach V2
 
