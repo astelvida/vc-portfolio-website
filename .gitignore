@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Claude Code session metadata
+.claude/
+
+# pnpm (project uses npm — pnpm lock/workspace files are experimental, not authoritative)
+pnpm-lock.yaml
+pnpm-workspace.yaml

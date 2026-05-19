@@ -13,13 +13,26 @@ const TICKER_DATA = [
   "Lakera 63 · CAI · Zurich",
 ];
 
-export function Ticker() {
+interface TickerProps {
+  variant?: "light" | "dark";
+}
+
+export function Ticker({ variant = "light" }: TickerProps) {
   const content = TICKER_DATA.join("  —  ");
+  const isDark = variant === "dark";
 
   return (
-    <div className="w-full overflow-hidden border-y border-border bg-surface py-2.5">
+    <div
+      className={`w-full overflow-hidden py-2.5 ${
+        isDark
+          ? "border-y border-white/[0.06] bg-transparent"
+          : "border-y border-border bg-surface"
+      }`}
+    >
       <div
-        className="flex whitespace-nowrap font-mono text-[10px] font-medium tracking-[0.06em] text-text-muted"
+        className={`flex whitespace-nowrap font-mono text-[10px] font-medium tracking-[0.06em] ${
+          isDark ? "text-white/25" : "text-text-muted"
+        }`}
         style={{
           animation: "ticker-scroll 30s linear infinite",
           width: "max-content",
