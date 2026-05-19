@@ -10,6 +10,15 @@ import { SIGNALS } from "@/data/signals";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+// EU AI Act high-risk (Annex III) enforcement begins Aug 2, 2026.
+const EU_AI_ACT_ENFORCEMENT = new Date("2026-08-02T00:00:00Z");
+
+function daysUntilEnforcement(): number {
+  const now = new Date();
+  const diffMs = EU_AI_ACT_ENFORCEMENT.getTime() - now.getTime();
+  return Math.max(0, Math.ceil(diffMs / 86_400_000));
+}
+
 const HERO_STATS = [
   { label: "PIPELINE", value: 78 },
   { label: "SCORED", value: 24 },
@@ -42,8 +51,8 @@ const EDGE_PILLARS = [
 ];
 
 const CAREER_ARC = [
-  { period: "2013\u201316", phase: "FINANCE", detail: "JPMorgan \u00b7 Morgan Stanley", color: "var(--thesis-vai)" },
-  { period: "2017\u201322", phase: "ENGINEERING", detail: "DAZN \u00b7 Duffel \u00b7 Funding Circle", color: "var(--thesis-inf)" },
+  { period: "2013\u201314", phase: "FINANCE", detail: "Morgan Stanley \u00b7 JPMorgan SPG", color: "var(--thesis-vai)" },
+  { period: "2017\u201322", phase: "ENGINEERING", detail: "DAZN \u00b7 Funding Circle \u00b7 Duffel", color: "var(--thesis-inf)" },
   { period: "2023\u2013NOW", phase: "VENTURE", detail: "Independent \u00b7 anefi.vc", color: "var(--thesis-cai)" },
 ];
 
@@ -57,9 +66,9 @@ const FRAMEWORKS = [
 const WRITING_LIST = [
   "Signals Over Stories: AI, Capital, and Constraints",
   "The Compliance-First AI Thesis",
-  "Score the Thesis, Not the Company",
-  "Why I Track GitHub Before I Read the Deck",
-  "The EU AI Compliance Stack Will Be Worth More Than the Models",
+  "Beyond ChatBots: Why Romania Can Own AgentOps & Compliance-First AI",
+  "I Look at GitHub Before I Read the Deck",
+  "The MCP Primitive Wars",
 ];
 
 function thesisColor(code: string): string {
@@ -90,8 +99,11 @@ export function HomePage() {
                 ACTIVELY SOURCING
               </span>
             </span>
-            <span className="font-mono text-[10px] tracking-[0.06em] text-white/30">
-              EU AI ACT ENFORCEMENT &mdash; 115 DAYS
+            <span
+              className="font-mono text-[10px] tracking-[0.06em] text-white/30"
+              suppressHydrationWarning
+            >
+              EU AI ACT ENFORCEMENT &mdash; {daysUntilEnforcement()} DAYS
             </span>
           </motion.div>
 

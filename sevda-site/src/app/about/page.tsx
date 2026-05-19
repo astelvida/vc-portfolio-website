@@ -16,20 +16,20 @@ const CAREER = [
   {
     phase: "FINANCE",
     color: "#6366F1",
-    companies: "JPMorgan · Morgan Stanley",
-    period: "2016–2019",
+    companies: "Morgan Stanley · JPMorgan SPG",
+    period: "2013–2014",
   },
   {
     phase: "ENGINEERING",
     color: "#10B981",
-    companies: "DAZN · Duffel · FC",
-    period: "2019–2022",
+    companies: "DAZN · Funding Circle · Duffel",
+    period: "2017–2022",
   },
   {
     phase: "VENTURE",
     color: "#E63312",
     companies: "Antler · anefi.vc",
-    period: "2022–now",
+    period: "2023–now",
   },
 ];
 
