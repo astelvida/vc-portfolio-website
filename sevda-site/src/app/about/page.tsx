@@ -56,7 +56,7 @@ export default function AboutPage() {
               shipping code that handles real money at real scale.
             </p>
             <p className="max-w-[460px] font-body text-[15px] font-light leading-[1.7] text-text">
-              Now early-stage European AI through anefi.vc. Three theses, 78
+              Now early-stage European AI through anefi.vc. Two theses, 78
               companies, a proprietary scoring model. Based between London and
               Bucharest. Four languages.
             </p>

@@ -55,6 +55,7 @@ export const metadata: Metadata = {
 const NAV_LINKS = [
   { href: "/", label: "HOME" },
   { href: "/theses", label: "THESES" },
+  { href: "/methodology", label: "METHODOLOGY" },
   { href: "/signals", label: "SIGNALS" },
   { href: "/writing", label: "WRITING" },
   { href: "/projects", label: "PROJECTS" },
@@ -86,7 +87,7 @@ export default function RootLayout({
               <span className="hidden md:inline text-text-faint">|</span>
               <span className="hidden md:inline">78 TRACKED</span>
               <span className="hidden md:inline text-text-faint">|</span>
-              <span className="hidden md:inline">3 THESES LIVE</span>
+              <span className="hidden md:inline">2 THESES LIVE</span>
               <span className="text-text-faint">|</span>
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5">
@@ -106,19 +107,19 @@ export default function RootLayout({
 
         {/* Navigation */}
         <nav className="w-full border-b border-border bg-surface">
-          <div className="mx-auto max-w-[1100px] px-4 md:px-9 flex items-center justify-between py-3">
+          <div className="mx-auto max-w-[1100px] px-4 md:px-9 flex items-center gap-4 md:gap-6 py-3">
             <Link
               href="/"
-              className="font-display text-sm font-bold tracking-[-0.04em] text-text"
+              className="font-display text-sm font-bold tracking-[-0.04em] text-text shrink-0"
             >
               SEVDA ANEFI
             </Link>
-            <div className="flex items-center gap-3 md:gap-6">
+            <div className="flex items-center gap-3 md:gap-5 overflow-x-auto no-scrollbar -mx-1 px-1 ml-auto">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted transition-colors duration-200 hover:text-text"
+                  className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted whitespace-nowrap transition-colors duration-200 hover:text-text shrink-0"
                 >
                   {link.label}
                 </Link>

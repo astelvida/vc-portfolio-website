@@ -7,61 +7,48 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const THESES_DEEP = [
   {
-    code: "CAI",
-    name: "The Compliance AI Moat",
+    code: "GAO",
+    name: "Governed Agentic Ops",
     conviction: 92,
     color: "#E63312",
-    tagline: "No compliance layer, no deployment.",
+    tagline: "The deployment gateway for enterprise AI.",
     description:
-      "Every AI system deployed in Europe needs a compliance layer to reach production \u2014 governance, audit, and monitoring tooling that becomes the deployment gateway. The EU AI Act creates mandatory demand. The startups that build this layer own the gate.",
-    controlPoint: "Governance & audit layer",
-    buyerPain: "Deploy AI without regulatory blowback",
-    proofSignal: "Buyers asking compliance questions in procurement",
+      "The next durable AI infrastructure layer in regulated Europe is not a model. It is the runtime gateway that makes autonomous workflows governable, observable, auditable, and safe enough for banks, insurers, hospitals, and public bodies to deploy. Eval, observability, audit evidence, policy enforcement, human-in-the-loop \u2014 one stack, one buyer, one decisive control point.",
+    controlPoint: "Runtime policy enforcement + audit evidence",
+    buyerPain: "Deploy AI without regulatory or operational blowback",
+    proofSignal: "Sandbox participation, runtime controls, named regulated buyer",
     icon: "\u{1f6e1}\ufe0f",
   },
   {
-    code: "VAI",
-    name: "Vertical AI in Regulated Industries",
-    conviction: 74,
+    code: "VSRAI",
+    name: "Vertical System-of-Record AI",
+    conviction: 82,
     color: "#6366F1",
-    tagline: "The model is not the moat. The workflow is.",
+    tagline: "Workflow gravity beats model novelty.",
     description:
-      "Healthcare, fintech, legal, MedTech. Products that write into or become the system of record \u2014 where switching means rebuilding the compliance infrastructure. Certification requirements create time moats that horizontal players cannot bridge.",
-    controlPoint: "System of record",
-    buyerPain: "Reduce labor, latency, documentation load",
-    proofSignal: "Workflow insertion & rising switching cost",
+      "The most durable vertical AI companies become, extend, or control the system of record where regulated work is created, verified, and acted upon. EHRs in healthcare, core banking in finserv, claims and policy admin in insurance, QMS in MedTech, matter management in legal. Not copilots beside the workflow. The workflow.",
+    controlPoint: "System of record write-back + domain data flywheel",
+    buyerPain: "Reduce labour, latency, documentation load",
+    proofSignal: "Bidirectional SoR integration, domain data flywheel, named operator buyer",
     icon: "\u{1f3d7}\ufe0f",
-  },
-  {
-    code: "INF",
-    name: "AI Evaluation & Production Infrastructure",
-    conviction: 78,
-    color: "#10B981",
-    tagline: "The production truth layer.",
-    description:
-      "Every AI agent needs evaluation, observability, and guardrails before enterprise deployment. 93% of AI infra capital targets training and inference \u2014 the evaluation layer captures the remaining 7%. That is a funding gap, not a market signal.",
-    controlPoint: "Reliability & measurement",
-    buyerPain: "Prove the system works safely in production",
-    proofSignal: "Eval budget tied to deployment & governance",
-    icon: "\u{1f50d}",
   },
 ];
 
 const COMPOUNDS = [
   {
-    from: "Vertical AI",
-    to: "Compliance AI",
-    text: "Every vertical AI product needs compliance tooling to deploy legally. TORTUS AI cannot write into NHS EHR systems without documented bias testing.",
+    from: "GAO",
+    to: "VSRAI",
+    text: "Every vertical AI product that writes into a regulated record needs runtime governance to deploy. TORTUS cannot write into NHS EHR systems without documented controls, evals, and audit evidence.",
   },
   {
-    from: "Compliance AI",
-    to: "Eval Infra",
-    text: "Every compliance platform needs evaluation infrastructure. You cannot audit what you cannot test.",
+    from: "VSRAI",
+    to: "GAO",
+    text: "Every governance platform needs vertical-grade evaluation data to be credible. You cannot certify what you have never seen production traffic for.",
   },
   {
-    from: "Eval Infra",
-    to: "Vertical AI",
-    text: "Every evaluation tool generates the documented test procedures that regulations mandate and vertical products require.",
+    from: "DUAL",
+    to: "FIT",
+    text: "The strongest portfolio companies score on both rubrics. A finserv platform that governs agentic compliance workflows and writes evidence into the bank's risk system is a GAO + VSRAI compound.",
   },
 ];
 
@@ -84,10 +71,10 @@ const EU_EDGE = [
 ];
 
 const PARAMETERS = [
-  { param: "Stage", target: "Pre-Seed to Series A (EUR 500K\u20133M checks)" },
+  { param: "Stage", target: "Pre-seed to Series A (EUR 500K\u20133M checks)" },
   { param: "Geography", target: "EU / UK / CEE \u2014 regulation-native founders" },
-  { param: "Timing", target: "115-day pre-enforcement window. 6\u201318 month buying cycle." },
-  { param: "Moat Test", target: "Inside mandatory workflow? SoR gravity? Regulatory embeddedness?" },
+  { param: "Timing", target: "EU AI Act Annex III window through Dec 2 2027 (Omnibus). 6\u201318 month buying cycle." },
+  { param: "Moat Test", target: "Inside mandatory workflow? SoR gravity? Runtime evidence?" },
   { param: "Avoid", target: "Wrappers, consulting-as-software, GDPR bolt-ons, horizontal dashboards" },
 ];
 
@@ -114,7 +101,7 @@ export function ThesisPage() {
             transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
             className="font-display text-[36px] sm:text-[48px] md:text-[64px] font-extrabold leading-[1.0] tracking-[-0.04em] text-white mb-6"
           >
-            Three conviction bets on
+            Two conviction bets on
             <br />
             <span className="text-accent">European AI infrastructure.</span>
           </motion.h1>
@@ -125,8 +112,9 @@ export function ThesisPage() {
             transition={{ duration: 0.6, delay: 0.45, ease: EASE }}
             className="max-w-[560px] font-body text-[15px] md:text-[17px] font-light leading-[1.7] text-white/50"
           >
-            Regulation creates markets. Workflow creates lock-in. Evaluation
-            creates trust. This is where the capital goes.
+            Governed Agentic Ops earns deployment permission. Vertical
+            System-of-Record AI captures workflow gravity. This is where the
+            capital compounds.
           </motion.p>
         </div>
       </section>
@@ -162,16 +150,16 @@ export function ThesisPage() {
         >
           <p className="font-body text-[15px] font-light leading-[1.7] text-text-muted">
             Models commoditize on every release cycle. What compounds is the
-            infrastructure around them &mdash; the compliance layer that gates
-            deployment, the vertical system of record that accumulates domain
-            data, the evaluation tooling that proves the system works.
+            infrastructure around them &mdash; runtime governance that earns
+            deployment permission, and vertical AI that owns the system of
+            record where regulated work is created, verified, and acted on.
           </p>
           <p className="font-body text-[15px] font-light leading-[1.7] text-text-muted">
             I invest where regulatory pressure converts into structural demand.
             Europe is not behind in AI &mdash; it is building a different
-            category of moat. The EU AI Act, DORA, PSD3, MDR, and MiFID2 are not
-            drag. They are distribution channels for startups that embed
-            compliance at the inference layer.
+            category of moat. The EU AI Act, DORA, NIS2, EHDS, AMLA, MDR, and
+            IVDR are not drag. They are distribution channels for startups that
+            embed compliance and workflow at the runtime layer.
           </p>
         </motion.div>
 
@@ -182,12 +170,12 @@ export function ThesisPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="font-display text-[15px] font-bold tracking-[-0.02em] text-text"
         >
-          The three theses share one structural belief: in regulated markets, the
-          compliance surface area is the product.
+          The two theses share one structural belief: in regulated markets, the
+          control surface is the product.
         </motion.p>
       </section>
 
-      {/* ===== THREE THESES ===== */}
+      {/* ===== TWO THESES ===== */}
       <section className="py-20 md:py-28 border-t border-border">
         <motion.span
           initial={{ opacity: 0 }}
@@ -195,7 +183,7 @@ export function ThesisPage() {
           viewport={{ once: true }}
           className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
         >
-          THREE THESES. ONE STACK.
+          TWO THESES. ONE STACK.
         </motion.span>
 
         <div className="flex flex-col gap-6">
@@ -338,7 +326,7 @@ export function ThesisPage() {
           transition={{ duration: 0.6, ease: EASE }}
           className="font-display text-[24px] sm:text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text max-w-[600px] mb-4"
         >
-          Not three themes.{" "}
+          Not two themes.{" "}
           <span className="text-accent">One stack.</span>
         </motion.h2>
 
@@ -349,8 +337,8 @@ export function ThesisPage() {
           transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
           className="max-w-[520px] font-body text-[15px] font-light leading-[1.7] text-text-muted mb-12"
         >
-          These are not three unrelated bets. They are one stack seen from
-          different altitudes. Each thesis reinforces the others.
+          These are not two unrelated bets. They are one stack seen from two
+          altitudes. Each thesis reinforces the other.
         </motion.p>
 
         <div className="flex flex-col gap-4">

@@ -1,16 +1,16 @@
 "use client";
 
 const TICKER_DATA = [
-  "TORTUS AI 82 · VAI · London",
-  "Deeploy 80 · CAI · Amsterdam",
-  "Alinia 79 · CAI · London",
-  "REMATIQ 77 · VAI · Berlin",
-  "Holistic AI 74 · CAI · London",
-  "Synthesia 71 · VAI · London",
-  "Parloa 69 · VAI · Berlin",
-  "Cradle 67 · INF · Amsterdam",
-  "Dust 65 · INF · Paris",
-  "Lakera 63 · CAI · Zurich",
+  "TORTUS AI 82 · VSRAI · London",
+  "Deeploy 80 · GAO · Amsterdam",
+  "Alinia 79 · GAO · London",
+  "Holistic AI 78 · GAO · London",
+  "REMATIQ 77 · VSRAI · Berlin",
+  "Lakera 75 · GAO · Zurich",
+  "QuantPi 72 · GAO · Berlin",
+  "Legora · VSRAI · Stockholm",
+  "Shift Technology · VSRAI · Paris",
+  "Geordie · GAO · London",
 ];
 
 interface TickerProps {

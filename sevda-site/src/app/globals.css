@@ -12,9 +12,8 @@
   --text-muted: #999999;
   --text-faint: #CCCCCC;
   --success: #22C55E;
-  --thesis-cai: #E63312;
-  --thesis-inf: #10B981;
-  --thesis-vai: #6366F1;
+  --thesis-gao: #E63312;
+  --thesis-vsrai: #6366F1;
 }
 
 @theme inline {
@@ -29,9 +28,8 @@
   --color-text-muted: var(--text-muted);
   --color-text-faint: var(--text-faint);
   --color-success: var(--success);
-  --color-thesis-cai: var(--thesis-cai);
-  --color-thesis-inf: var(--thesis-inf);
-  --color-thesis-vai: var(--thesis-vai);
+  --color-thesis-gao: var(--thesis-gao);
+  --color-thesis-vsrai: var(--thesis-vsrai);
   --font-display: var(--font-syne);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-jetbrains-mono);
@@ -57,6 +55,14 @@ body {
     linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes ticker-scroll {

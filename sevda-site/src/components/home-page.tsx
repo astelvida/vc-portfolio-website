@@ -10,12 +10,14 @@ import { SIGNALS } from "@/data/signals";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-// EU AI Act high-risk (Annex III) enforcement begins Aug 2, 2026.
-const EU_AI_ACT_ENFORCEMENT = new Date("2026-08-02T00:00:00Z");
+// EU AI Act Annex III (high-risk) enforcement: deferred to Dec 2, 2027 by the
+// Digital Omnibus deal closed May 7, 2026. Annex I (GPAI) lands Aug 2, 2028.
+// Article 50(2) watermarking compliance: Dec 2, 2026.
+const ANNEX_III_ENFORCEMENT = new Date("2027-12-02T00:00:00Z");
 
 function daysUntilEnforcement(): number {
   const now = new Date();
-  const diffMs = EU_AI_ACT_ENFORCEMENT.getTime() - now.getTime();
+  const diffMs = ANNEX_III_ENFORCEMENT.getTime() - now.getTime();
   return Math.max(0, Math.ceil(diffMs / 86_400_000));
 }
 
@@ -23,37 +25,37 @@ const HERO_STATS = [
   { label: "PIPELINE", value: 78 },
   { label: "SCORED", value: 24 },
   { label: "IC MEMOS", value: 8 },
-  { label: "THESES", value: 3 },
+  { label: "THESES", value: 2 },
 ];
 
 const EDGE_PILLARS = [
   {
     label: "FINANCE RIGOR",
     org: "JPMorgan SPG \u00b7 Morgan Stanley",
-    body: "Structured products, rating agency coordination, institutional analytical discipline. I see operational leverage \u2014 reconciliation agents, compliance orchestration, close automation \u2014 as the next durable compounding edge.",
-    color: "var(--thesis-vai)",
+    body: "Structured products, rating-agency coordination, institutional analytical discipline. I see operational compounding (reconciliation agents, compliance orchestration, close automation) as the next durable edge.",
+    color: "#6366F1",
     icon: "\u2197",
   },
   {
     label: "TECHNICAL DILIGENCE",
-    org: "DAZN \u00b7 Duffel \u00b7 Funding Circle",
-    body: "Production engineering at scale. I read code, audit LLM integration patterns, evaluate infra claims \u2014 latency budgets, vector search benchmarks, edge compute tradeoffs. I distinguish real technical moats from GPT wrappers.",
-    color: "var(--thesis-inf)",
+    org: "DAZN \u00b7 Funding Circle \u00b7 Duffel",
+    body: "Production engineering at scale. I read code, audit LLM integration patterns, evaluate infra claims: latency budgets, vector search benchmarks, edge compute tradeoffs. I separate real technical moats from GPT wrappers.",
+    color: "#10B981",
     icon: "\u2318",
   },
   {
     label: "EUROPEAN AI SOURCING",
-    org: "CEE Corridor \u00b7 4 Languages",
-    body: "Under-indexed markets, first-mover access. Romania, Poland, Czechia, the Baltics, Bulgaria \u2014 markets where strong technical teams are often missed early. I know the filings, networks, and signals that precede raises.",
-    color: "var(--thesis-cai)",
+    org: "CEE corridor \u00b7 4 languages",
+    body: "Under-indexed markets, first-mover access. Romania, Poland, Czechia, the Baltics, Bulgaria. Markets where strong technical teams are missed early. I know the filings, networks, and signals that precede raises.",
+    color: "#E63312",
     icon: "\u25ce",
   },
 ];
 
 const CAREER_ARC = [
-  { period: "2013\u201314", phase: "FINANCE", detail: "Morgan Stanley \u00b7 JPMorgan SPG", color: "var(--thesis-vai)" },
-  { period: "2017\u201322", phase: "ENGINEERING", detail: "DAZN \u00b7 Funding Circle \u00b7 Duffel", color: "var(--thesis-inf)" },
-  { period: "2023\u2013NOW", phase: "VENTURE", detail: "Independent \u00b7 anefi.vc", color: "var(--thesis-cai)" },
+  { period: "2013\u201314", phase: "FINANCE", detail: "Morgan Stanley \u00b7 JPMorgan SPG", color: "#6366F1" },
+  { period: "2017\u201322", phase: "ENGINEERING", detail: "DAZN \u00b7 Funding Circle \u00b7 Duffel", color: "#10B981" },
+  { period: "2023\u2013NOW", phase: "VENTURE", detail: "Independent \u00b7 anefi.vc", color: "#E63312" },
 ];
 
 const FRAMEWORKS = [
@@ -200,30 +202,30 @@ export function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          className="max-w-[600px] font-body text-[15px] font-light leading-[1.7] text-text-muted mb-12 md:mb-16"
+          className="max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-text-muted mb-12 md:mb-16"
         >
           Models commoditize on every release cycle. What compounds is the
-          infrastructure around them &mdash; the compliance layer that gates
-          deployment, the vertical system of record that accumulates domain data,
-          the evaluation tooling that proves the system works.
+          infrastructure around them &mdash; runtime governance that earns
+          deployment permission, and vertical AI that owns the system of
+          record where regulated work is created, verified, and acted on.
         </motion.p>
 
-        {/* Thesis Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-12">
+        {/* Thesis Cards — two-thesis canon */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
           {THESES.map((thesis, i) => (
             <motion.div
               key={thesis.code}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
+              transition={{ duration: 0.55, delay: i * 0.12, ease: EASE }}
               className="group relative rounded-[10px] border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-border-hover hover:shadow-xl"
             >
               <div
-                className="absolute top-0 left-0 right-0 h-[2px] rounded-t-[10px]"
+                className="absolute top-0 left-0 right-0 h-[3px] rounded-t-[10px]"
                 style={{ backgroundColor: thesis.color }}
               />
-              <div className="flex items-center justify-between border-b border-border px-4 py-3">
+              <div className="flex items-center justify-between border-b border-border px-5 py-3">
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-1.5 w-1.5">
                     <span
@@ -235,22 +237,33 @@ export function HomePage() {
                       style={{ backgroundColor: thesis.color }}
                     />
                   </span>
-                  <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted">
-                    {thesis.code}
+                  <span
+                    className="font-mono text-[10px] font-semibold tracking-[0.08em]"
+                    style={{ color: thesis.color }}
+                  >
+                    THESIS {String.fromCharCode(65 + i)} · {thesis.code}
                   </span>
                 </div>
                 <span
                   className="font-mono text-[11px] font-semibold tracking-[0.04em]"
                   style={{ color: thesis.color }}
                 >
-                  {thesis.conviction}%
+                  {thesis.conviction}
                 </span>
               </div>
-              <div className="flex flex-col gap-3 p-5">
-                <h3 className="font-display text-[15px] font-bold tracking-[-0.04em] text-text">
-                  {thesis.name}
-                </h3>
-                <p className="font-body text-[13px] font-light leading-[1.6] text-text-muted">
+              <div className="flex flex-col gap-4 p-6">
+                <div>
+                  <h3 className="font-display text-[18px] md:text-[20px] font-extrabold tracking-[-0.04em] text-text mb-1.5">
+                    {thesis.name}
+                  </h3>
+                  <p
+                    className="font-display text-[13px] font-bold tracking-[-0.02em]"
+                    style={{ color: thesis.color }}
+                  >
+                    {thesis.tagline}
+                  </p>
+                </div>
+                <p className="font-body text-[13.5px] font-light leading-[1.65] text-text-muted">
                   {thesis.description}
                 </p>
                 <ConvictionBar
@@ -259,13 +272,16 @@ export function HomePage() {
                   delay={200 + i * 150}
                 />
               </div>
-              <div className="border-t border-border px-5 py-3">
+              <div className="border-t border-border px-5 py-3 flex items-center justify-between">
                 <Link
                   href="/theses"
                   className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted transition-colors hover:text-accent"
                 >
-                  Read thesis &rarr;
+                  Read the thesis &rarr;
                 </Link>
+                <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint">
+                  CONVICTION
+                </span>
               </div>
             </motion.div>
           ))}
@@ -278,8 +294,8 @@ export function HomePage() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-body text-[14px] font-light italic text-text-muted"
         >
-          Regulation creates markets. Workflow creates lock-in. Evaluation
-          creates trust.
+          Regulation is distribution. Workflow is gravity. Together they
+          underwrite the boring layer the next decade is built on.
         </motion.p>
       </section>
 
