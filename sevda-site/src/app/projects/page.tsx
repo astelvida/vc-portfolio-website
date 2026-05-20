@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { RepoCard } from "@/components/repo-card";
 import { PROJECTS } from "@/data/projects";
+import { getRepos } from "@/lib/github";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -12,7 +14,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const repos = await getRepos();
+
   return (
     <div className="flex flex-col gap-14">
       <SectionWrapper>
@@ -51,6 +55,30 @@ export default function ProjectsPage() {
           </SectionWrapper>
         ))}
       </div>
+
+      {repos.length > 0 && (
+        <div className="flex flex-col gap-6">
+          <SectionWrapper>
+            <div className="flex flex-col gap-4">
+              <h2 className="font-display text-[24px] font-extrabold tracking-[-0.04em] text-text sm:text-[28px]">
+                BUILT IN PUBLIC
+              </h2>
+              <p className="max-w-[460px] font-body text-[15px] font-light leading-[1.7] text-text-muted">
+                Open-source repos behind the sourcing and scoring work —
+                pulled live from GitHub.
+              </p>
+            </div>
+          </SectionWrapper>
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {repos.map((repo, i) => (
+              <SectionWrapper key={repo.fullName} delay={i * 70}>
+                <RepoCard repo={repo} />
+              </SectionWrapper>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
