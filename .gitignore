@@ -4,6 +4,9 @@
 # Claude Code session metadata
 .claude/
 
+# Playwright MCP scratch output
+.playwright-mcp/
+
 # pnpm (project uses npm — pnpm lock/workspace files are experimental, not authoritative)
 pnpm-lock.yaml
 pnpm-workspace.yaml
