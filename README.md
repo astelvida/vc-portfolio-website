@@ -1,4 +1,5 @@
-# Signals Over Stories — anefi.vc
+# Sevda's VC Portfolio Website - **[sevda-vc-portfolio-website](https://vc-portfolio-website.vercel.app/)**.
+## Signals Over Stories
 
 ![Signals Over Stories](docs/screenshots/home.png)
 
@@ -9,7 +10,7 @@ investor-operator. Built around *Signals Over Stories*, a framework for
 sourcing and scoring pre-seed to Series A AI companies in regulated European
 markets.
 
-Live at **[anefi.vc](https://anefi.vc)**.
+Live at **[sevda-vc-portfolio-website](https://vc-portfolio-website.vercel.app/)**.
 
 ## What's inside
 
