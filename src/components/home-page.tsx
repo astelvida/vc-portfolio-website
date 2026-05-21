@@ -5,193 +5,192 @@ import Link from "next/link";
 import { AnimatedNumber } from "./animated-number";
 import { Ticker } from "./ticker";
 import { ConvictionBar } from "./conviction-bar";
+import { ScrambleText } from "./scramble-text";
+import { TerminalFrame } from "./terminal-frame";
+import { AsciiDivider } from "./ascii-divider";
 import { THESES } from "@/data/theses";
 import { SIGNALS } from "@/data/signals";
+import { SITE, HERO_STATS } from "@/data/site";
+import { EDGE_PILLARS, CAREER_ARC } from "@/data/edge";
+import { FRAMEWORKS, WRITING_LIST } from "@/data/frameworks";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 // EU AI Act Annex III (high-risk) enforcement: deferred to Dec 2, 2027 by the
-// Digital Omnibus deal closed May 7, 2026. Annex I (GPAI) lands Aug 2, 2028.
-// Article 50(2) watermarking compliance: Dec 2, 2026.
+// Digital Omnibus political agreement of 7 May 2026.
 const ANNEX_III_ENFORCEMENT = new Date("2027-12-02T00:00:00Z");
 
 function daysUntilEnforcement(): number {
-  const now = new Date();
-  const diffMs = ANNEX_III_ENFORCEMENT.getTime() - now.getTime();
+  const diffMs = ANNEX_III_ENFORCEMENT.getTime() - Date.now();
   return Math.max(0, Math.ceil(diffMs / 86_400_000));
 }
 
-const HERO_STATS = [
-  { label: "PIPELINE", value: 78 },
-  { label: "SCORED", value: 24 },
-  { label: "IC MEMOS", value: 8 },
-  { label: "THESES", value: 2 },
-];
+const HEADLINE = ["SIGNALS", "OVER", "STORIES."];
 
-const EDGE_PILLARS = [
+const ENGINE_STAGES = [
   {
-    label: "FINANCE RIGOR",
-    org: "JPMorgan SPG \u00b7 Morgan Stanley",
-    body: "Structured products, rating-agency coordination, institutional analytical discipline. I see operational compounding (reconciliation agents, compliance orchestration, close automation) as the next durable edge.",
-    color: "#6366F1",
-    icon: "\u2197",
+    step: "01",
+    label: "SCOUT",
+    head: "regscan · ghscan · procscan · talentscan",
+    body: "Atomic signals logged from regulators, repositories, procurement portals, and hiring moves.",
   },
   {
-    label: "TECHNICAL DILIGENCE",
-    org: "DAZN \u00b7 Funding Circle \u00b7 Duffel",
-    body: "Production engineering at scale. I read code, audit LLM integration patterns, evaluate infra claims: latency budgets, vector search benchmarks, edge compute tradeoffs. I separate real technical moats from GPT wrappers.",
-    color: "#10B981",
-    icon: "\u2318",
+    step: "02",
+    label: "SCORE",
+    head: "SSI v3.0 · dual-rubric",
+    body: "Eight GAO and eight VSRAI dimensions, scored on a 100-point scale. No score without a source.",
   },
   {
-    label: "EUROPEAN AI SOURCING",
-    org: "CEE corridor \u00b7 4 languages",
-    body: "Under-indexed markets, first-mover access. Romania, Poland, Czechia, the Baltics, Bulgaria. Markets where strong technical teams are missed early. I know the filings, networks, and signals that precede raises.",
-    color: "#E63312",
-    icon: "\u25ce",
+    step: "03",
+    label: "MEMO",
+    head: "IC-style investment memo",
+    body: "Falsifier register, kill criteria, and a dated next action — drafted by the agent loop.",
   },
-];
-
-const CAREER_ARC = [
-  { period: "2013\u201314", phase: "FINANCE", detail: "Morgan Stanley \u00b7 JPMorgan SPG", color: "#6366F1" },
-  { period: "2017\u201322", phase: "ENGINEERING", detail: "DAZN \u00b7 Funding Circle \u00b7 Duffel", color: "#10B981" },
-  { period: "2023\u2013NOW", phase: "VENTURE", detail: "Independent \u00b7 anefi.vc", color: "#E63312" },
-];
-
-const FRAMEWORKS = [
-  "SSI v2.0 \u2014 unified 8-signal scoring framework for early-stage European AI",
-  "8-layer Alpha Signal Framework \u2014 research velocity, hiring surges, regulatory tailwinds, product artifacts",
-  "3 automated agents (Scout \u2192 Score \u2192 Memo) \u2014 sourcing-to-memo pipeline",
-  "Live dealflow tracker \u2014 pipeline, priority, signal timeline, act-now, scoring matrix",
-];
-
-const WRITING_LIST = [
-  "Signals Over Stories: AI, Capital, and Constraints",
-  "The Compliance-First AI Thesis",
-  "Beyond ChatBots: Why Romania Can Own AgentOps & Compliance-First AI",
-  "I Look at GitHub Before I Read the Deck",
-  "The MCP Primitive Wars",
 ];
 
 function thesisColor(code: string): string {
   return THESES.find((t) => t.code === code)?.color ?? "var(--text-muted)";
 }
 
+function Eyebrow({ children, ink = false }: { children: string; ink?: boolean }) {
+  return (
+    <motion.span
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.4 }}
+      className={`mb-6 block font-mono text-[10px] font-semibold tracking-[0.22em] ${
+        ink ? "text-white/45" : "text-text-muted"
+      }`}
+    >
+      [ {children} ]
+    </motion.span>
+  );
+}
+
 export function HomePage() {
   return (
     <div className="-mt-6 md:-mt-9">
-      {/* ===== SECTION 1: HERO ===== */}
-      <section className="full-bleed relative overflow-hidden bg-[#0A0A0A]">
-        <div className="absolute inset-0 hero-grid opacity-[0.035]" />
+      {/* ===== HERO ===== */}
+      <section className="full-bleed relative overflow-hidden bg-ink">
+        <div className="absolute inset-0 hero-grid opacity-[0.04]" />
 
-        <div className="relative mx-auto max-w-[1100px] px-4 md:px-9 pt-14 md:pt-24">
-          {/* Status */}
+        <div className="relative mx-auto max-w-[1100px] px-4 pt-14 md:px-9 md:pt-24">
+          {/* Boot sequence */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: EASE }}
-            className="flex flex-wrap items-center gap-3 md:gap-4 mb-10 md:mb-14"
+            transition={{ duration: 0.5, delay: 0.15, ease: EASE }}
+            className="mb-10 flex flex-col gap-1 font-mono text-[10px] leading-[1.7] tracking-[0.04em] text-white/35 md:mb-14"
           >
-            <span className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1">
+            <span className="text-white/55">
+              <span className="text-accent">&gt;</span> ./scouting-engine --run weekly
+            </span>
+            <span>
+              <span className="text-success">[ok]</span> SSI {SITE.ssiVersion} · dual-rubric loaded
+            </span>
+            <span suppressHydrationWarning>
+              <span className="text-success">[ok]</span> {SITE.pipelineCount} companies
+              on pipeline · {SITE.thesisCount} theses live · EU AI Act Annex III in{" "}
+              {daysUntilEnforcement()} days
+              <span className="ml-1 inline-block animate-[caret-blink_1s_step-end_infinite] text-accent">
+                █
+              </span>
+            </span>
+          </motion.div>
+
+          {/* Status badge */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mb-8"
+          >
+            <span className="inline-flex items-center gap-2 border border-emerald-500/25 bg-emerald-500/10 px-3 py-1">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
-              <span className="font-mono text-[10px] font-semibold tracking-[0.08em] text-emerald-400">
+              <span className="font-mono text-[10px] font-semibold tracking-[0.12em] text-emerald-400">
                 ACTIVELY SOURCING
               </span>
             </span>
-            <span
-              className="font-mono text-[10px] tracking-[0.06em] text-white/30"
-              suppressHydrationWarning
-            >
-              EU AI ACT ENFORCEMENT &mdash; {daysUntilEnforcement()} DAYS
-            </span>
           </motion.div>
 
-          {/* Heading */}
-          <div className="mb-8 md:mb-10">
-            {["SIGNALS", "OVER", "STORIES."].map((word, i) => (
-              <motion.div
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: EASE }}
+            className="mb-8 md:mb-10"
+          >
+            {HEADLINE.map((word, i) => (
+              <ScrambleText
                 key={word}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 + i * 0.12, ease: EASE }}
-                className="overflow-hidden"
-              >
-                <span
-                  className={`block font-display text-[52px] sm:text-[76px] md:text-[100px] font-extrabold leading-[0.92] tracking-[-0.04em] ${
-                    word === "STORIES." ? "text-accent" : "text-white"
-                  }`}
-                >
-                  {word}
-                </span>
-              </motion.div>
+                text={word}
+                delay={350 + i * 140}
+                duration={620}
+                className={`block font-display text-[clamp(3.25rem,12vw,8rem)] font-extrabold leading-[0.9] tracking-[-0.045em] ${
+                  word === "STORIES." ? "text-accent" : "text-white"
+                }`}
+              />
             ))}
-          </div>
+          </motion.h1>
 
           {/* Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.85, ease: EASE }}
-            className="max-w-[540px] font-body text-[15px] md:text-[17px] font-light leading-[1.7] text-white/50 mb-12 md:mb-16"
+            transition={{ duration: 0.6, delay: 0.9, ease: EASE }}
+            className="mb-12 max-w-[560px] font-body text-[15px] font-light leading-[1.7] text-white/55 md:mb-16 md:text-[17px]"
           >
-            Ex-JPMorgan and Morgan Stanley analyst turned software engineer and
-            European AI investor-operator. Compliance-first thesis, technical
-            diligence depth, and on-the-ground access to the CEE corridor.
+            Ex-J.P. Morgan and Morgan Stanley analyst turned software engineer
+            and European AI investor-operator. Compliance-first thesis,
+            technical diligence depth, and on-the-ground access to the CEE
+            corridor.
           </motion.p>
 
-          {/* Stats Grid */}
+          {/* Stat grid */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.05, ease: EASE }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-lg overflow-hidden border border-white/[0.08]"
+            transition={{ duration: 0.5, delay: 1.1, ease: EASE }}
+            className="grid grid-cols-2 gap-px border border-ink-border bg-ink-border md:grid-cols-4"
           >
             {HERO_STATS.map((stat, i) => (
-              <motion.div
+              <div
                 key={stat.label}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 1.15 + i * 0.08 }}
-                className="flex flex-col items-center gap-1.5 bg-white/[0.03] py-5 md:py-7 px-4 backdrop-blur-sm"
+                className="flex flex-col gap-2 bg-ink px-5 py-6 md:py-8"
               >
-                <span className="font-display text-[28px] md:text-[36px] font-bold tracking-[-0.04em] text-white">
+                <span className="font-mono text-[9px] tracking-[0.16em] text-white/30">
+                  0{i + 1}
+                </span>
+                <span className="font-display text-[34px] font-extrabold leading-none tracking-[-0.04em] text-white tabular-nums md:text-[44px]">
                   <AnimatedNumber target={stat.value} duration={1400} />
                 </span>
-                <span className="font-mono text-[9px] md:text-[10px] font-medium tracking-[0.1em] text-white/35">
+                <span className="font-mono text-[9px] font-medium tracking-[0.14em] text-white/40 md:text-[10px]">
                   {stat.label}
                 </span>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>
 
-        {/* Hero Ticker */}
-        <div className="mt-10 md:mt-14 border-t border-white/[0.06]">
+        <div className="mt-12 border-t border-white/[0.06] md:mt-16">
           <Ticker variant="dark" />
         </div>
       </section>
 
-      {/* ===== SECTION 2: THE HOUSE VIEW ===== */}
+      {/* ===== HOUSE VIEW ===== */}
       <section className="py-20 md:py-28">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4 }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          THE HOUSE VIEW
-        </motion.span>
+        <Eyebrow>THE HOUSE VIEW</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="font-display text-[24px] sm:text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text max-w-[700px] mb-6"
+          className="mb-6 max-w-[760px] font-display text-[26px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[34px] md:text-[42px]"
         >
           Most AI capital chases model superiority.{" "}
           <span className="text-accent">That is the wrong frame.</span>
@@ -202,58 +201,45 @@ export function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          className="max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-text-muted mb-12 md:mb-16"
+          className="mb-12 max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-text-muted md:mb-14"
         >
           Models commoditize on every release cycle. What compounds is the
-          infrastructure around them &mdash; runtime governance that earns
-          deployment permission, and vertical AI that owns the system of
-          record where regulated work is created, verified, and acted on.
+          infrastructure around them — runtime governance that earns deployment
+          permission, and vertical AI that owns the system of record where
+          regulated work is created, verified, and acted on.
         </motion.p>
 
-        {/* Thesis Cards — two-thesis canon */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-px border border-border bg-border md:grid-cols-2">
           {THESES.map((thesis, i) => (
             <motion.div
               key={thesis.code}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: i * 0.12, ease: EASE }}
-              className="group relative rounded-[10px] border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-border-hover hover:shadow-xl"
+              transition={{ duration: 0.55, delay: i * 0.1, ease: EASE }}
+              className="group relative flex flex-col bg-surface"
             >
               <div
-                className="absolute top-0 left-0 right-0 h-[3px] rounded-t-[10px]"
+                className="h-[3px] w-full"
                 style={{ backgroundColor: thesis.color }}
               />
               <div className="flex items-center justify-between border-b border-border px-5 py-3">
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span
-                      className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
-                      style={{ backgroundColor: thesis.color }}
-                    />
-                    <span
-                      className="relative inline-flex h-1.5 w-1.5 rounded-full"
-                      style={{ backgroundColor: thesis.color }}
-                    />
-                  </span>
-                  <span
-                    className="font-mono text-[10px] font-semibold tracking-[0.08em]"
-                    style={{ color: thesis.color }}
-                  >
-                    THESIS {String.fromCharCode(65 + i)} · {thesis.code}
-                  </span>
-                </div>
                 <span
-                  className="font-mono text-[11px] font-semibold tracking-[0.04em]"
+                  className="font-mono text-[10px] font-semibold tracking-[0.1em]"
                   style={{ color: thesis.color }}
                 >
-                  {thesis.conviction}
+                  THESIS {String.fromCharCode(65 + i)} · {thesis.code}
+                </span>
+                <span
+                  className="font-mono text-[11px] font-semibold tabular-nums"
+                  style={{ color: thesis.color }}
+                >
+                  {thesis.conviction}% CONVICTION
                 </span>
               </div>
-              <div className="flex flex-col gap-4 p-6">
+              <div className="flex flex-1 flex-col gap-4 p-6">
                 <div>
-                  <h3 className="font-display text-[18px] md:text-[20px] font-extrabold tracking-[-0.04em] text-text mb-1.5">
+                  <h3 className="mb-1.5 font-display text-[19px] font-extrabold tracking-[-0.04em] text-text md:text-[21px]">
                     {thesis.name}
                   </h3>
                   <p
@@ -272,17 +258,15 @@ export function HomePage() {
                   delay={200 + i * 150}
                 />
               </div>
-              <div className="border-t border-border px-5 py-3 flex items-center justify-between">
-                <Link
-                  href="/theses"
-                  className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted transition-colors hover:text-accent"
-                >
-                  Read the thesis &rarr;
-                </Link>
-                <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint">
-                  CONVICTION
+              <Link
+                href="/theses"
+                className="flex items-center justify-between border-t border-border px-5 py-3 font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted transition-colors hover:text-accent"
+              >
+                <span>READ THE THESIS &rarr;</span>
+                <span className="tracking-[0.1em] text-text-faint">
+                  {thesis.controlPoint}
                 </span>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -299,23 +283,16 @@ export function HomePage() {
         </motion.p>
       </section>
 
-      {/* ===== SECTION 3: THE EDGE ===== */}
-      <section className="py-20 md:py-28 border-t border-border">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          THE EDGE
-        </motion.span>
+      {/* ===== THE EDGE ===== */}
+      <section className="border-t border-border py-20 md:py-28">
+        <Eyebrow>THE EDGE</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="font-display text-[28px] sm:text-[36px] md:text-[44px] font-extrabold leading-[1.05] tracking-[-0.04em] text-text mb-4"
+          className="mb-4 font-display text-[28px] font-extrabold leading-[1.05] tracking-[-0.04em] text-text sm:text-[36px] md:text-[44px]"
         >
           CAPITAL, CODE, AND <span className="text-accent">CONVICTION.</span>
         </motion.h2>
@@ -323,17 +300,16 @@ export function HomePage() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          className="max-w-[520px] font-body text-[15px] font-light leading-[1.7] text-text-muted mb-12 md:mb-16"
+          className="mb-12 max-w-[540px] font-body text-[15px] font-light leading-[1.7] text-text-muted md:mb-16"
         >
-          I combine three strengths that rarely sit in one profile: institutional
-          finance, software engineering, and European AI market mapping. That mix
-          lets me move fluently between capital, code, and conviction.
+          Three strengths that rarely sit in one profile: institutional finance,
+          software engineering, and European AI market mapping. That mix moves
+          fluently between capital, code, and conviction.
         </motion.p>
 
-        {/* Three Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-14 md:mb-20">
+        <div className="mb-12 grid grid-cols-1 gap-px border border-border bg-border md:grid-cols-3">
           {EDGE_PILLARS.map((pillar, i) => (
             <motion.div
               key={pillar.label}
@@ -341,28 +317,24 @@ export function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
-              className="flex flex-col gap-4 rounded-[10px] border border-border bg-surface p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-border-hover hover:shadow-lg"
+              className="flex flex-col gap-4 bg-surface p-6"
             >
-              <div className="flex items-center gap-3">
-                <span
-                  className="flex h-8 w-8 items-center justify-center rounded-md text-sm"
-                  style={{
-                    backgroundColor: `color-mix(in srgb, ${pillar.color} 12%, transparent)`,
-                    color: pillar.color,
-                  }}
-                >
-                  {pillar.icon}
+              <div className="flex items-center justify-between">
+                <span className="flex h-9 w-9 items-center justify-center border border-border text-base text-accent">
+                  {pillar.glyph}
                 </span>
-                <span
-                  className="font-mono text-[11px] font-semibold tracking-[0.06em]"
-                  style={{ color: pillar.color }}
-                >
-                  {pillar.label}
+                <span className="font-mono text-[9px] tracking-[0.16em] text-text-faint">
+                  0{i + 1} / 03
                 </span>
               </div>
-              <span className="font-display text-xs font-bold tracking-[-0.02em] text-text">
-                {pillar.org}
-              </span>
+              <div>
+                <span className="block font-mono text-[11px] font-semibold tracking-[0.08em] text-accent">
+                  {pillar.label}
+                </span>
+                <span className="font-display text-xs font-bold tracking-[-0.02em] text-text">
+                  {pillar.org}
+                </span>
+              </div>
               <p className="font-body text-[13px] font-light leading-[1.7] text-text-muted">
                 {pillar.body}
               </p>
@@ -370,31 +342,24 @@ export function HomePage() {
           ))}
         </div>
 
-        {/* Career Arc */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="flex flex-col md:flex-row gap-0 rounded-lg border border-border overflow-hidden"
+          className="grid grid-cols-1 gap-px border border-border bg-border md:grid-cols-3"
         >
           {CAREER_ARC.map((era) => (
             <div
               key={era.phase}
-              className="flex-1 flex items-center gap-3 border-b md:border-b-0 md:border-r last:border-0 border-border px-5 py-4 bg-surface"
+              className="flex items-center gap-3 bg-surface px-5 py-4"
             >
-              <div
-                className="h-8 w-[3px] rounded-full shrink-0"
-                style={{ backgroundColor: era.color }}
-              />
+              <div className="h-8 w-[3px] shrink-0 bg-accent" />
               <div className="flex flex-col gap-0.5">
                 <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint">
                   {era.period}
                 </span>
-                <span
-                  className="font-mono text-[11px] font-semibold tracking-[0.04em]"
-                  style={{ color: era.color }}
-                >
+                <span className="font-mono text-[11px] font-semibold tracking-[0.04em] text-text">
                   {era.phase}
                 </span>
                 <span className="font-body text-[12px] text-text-muted">
@@ -406,31 +371,111 @@ export function HomePage() {
         </motion.div>
       </section>
 
-      {/* ===== SECTION 4: SIGNAL PIPELINE ===== */}
-      <section className="py-20 md:py-28 border-t border-border">
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          <motion.span
+      {/* ===== SCOUTING ENGINE ===== */}
+      <section className="full-bleed relative overflow-hidden bg-ink">
+        <div className="absolute inset-0 hero-grid opacity-[0.04]" />
+        <div className="relative mx-auto max-w-[1100px] px-4 py-20 md:px-9 md:py-28">
+          <Eyebrow ink>THE SCOUTING ENGINE</Eyebrow>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="mb-4 font-display text-[28px] font-extrabold leading-[1.05] tracking-[-0.04em] text-white sm:text-[36px] md:text-[44px]"
+          >
+            SCOUT. SCORE. <span className="text-accent">MEMO.</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
+            className="mb-12 max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-white/55"
+          >
+            A three-agent loop running on Claude and the Notion MCP. It surfaces
+            pre-consensus European AI from regulatory and technical signal, scores
+            each company against the thesis it fits, and drafts the memo — so
+            conviction is built from filings, not feelings.
+          </motion.p>
+
+          <div className="mb-10 grid grid-cols-1 items-stretch gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+            {ENGINE_STAGES.map((stage, i) => (
+              <div key={stage.label} className="contents">
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: i * 0.12, ease: EASE }}
+                >
+                  <TerminalFrame
+                    variant="ink"
+                    title={`${stage.step} · ${stage.label}`}
+                    className="h-full"
+                  >
+                    <div className="flex flex-col gap-2 p-5">
+                      <span className="font-mono text-[11px] font-semibold tracking-[0.04em] text-accent">
+                        {stage.head}
+                      </span>
+                      <p className="font-body text-[13px] font-light leading-[1.65] text-white/55">
+                        {stage.body}
+                      </p>
+                    </div>
+                  </TerminalFrame>
+                </motion.div>
+                {i < ENGINE_STAGES.length - 1 ? (
+                  <div className="flex items-center justify-center font-mono text-base text-accent">
+                    <span className="hidden md:inline">──▶</span>
+                    <span className="md:hidden">▼</span>
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
+
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted"
+            transition={{ duration: 0.6 }}
+            className="flex flex-col gap-6 border-t border-ink-border pt-8 sm:flex-row sm:items-center sm:justify-between"
           >
-            SIGNAL PIPELINE
-          </motion.span>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] tracking-[0.06em] text-white/45">
+              <span>
+                <span className="text-white">{SITE.rubricDimensions}</span> SSI
+                DIMENSIONS
+              </span>
+              <span>
+                <span className="text-white">{SITE.thesisCount}</span> RUBRICS
+              </span>
+              <span>
+                <span className="text-white">{SITE.signalLayers}</span> SIGNAL
+                LAYERS
+              </span>
+            </div>
+            <Link
+              href="/engine"
+              className="inline-flex w-fit items-center gap-2 bg-accent px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.08em] text-white transition-colors hover:bg-[#c92a0e]"
+            >
+              OPEN THE ENGINE &rarr;
+            </Link>
+          </motion.div>
         </div>
+      </section>
+
+      {/* ===== SIGNAL PIPELINE ===== */}
+      <section className="border-t border-border py-20 md:py-28">
+        <Eyebrow>SIGNAL PIPELINE</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="font-display text-[24px] sm:text-[32px] font-extrabold tracking-[-0.04em] text-text mb-10"
+          className="mb-10 font-display text-[26px] font-extrabold tracking-[-0.04em] text-text sm:text-[32px]"
         >
-          Top signals by SSI score.
+          Top of the live pipeline, by SSI score.
         </motion.h2>
 
         <motion.div
@@ -438,173 +483,142 @@ export function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="rounded-[10px] border border-border bg-surface overflow-hidden mb-8"
+          className="mb-8"
         >
-          <div className="overflow-x-auto">
-            <div className="min-w-[520px]">
-              {/* Header */}
-              <div className="grid grid-cols-[1fr_64px_48px_64px_88px_64px] gap-0 border-b border-border bg-bg px-4 md:px-6 py-2.5">
-                {["COMPANY", "SSI", "\u0394", "THESIS", "HQ", "HEAT"].map(
-                  (h) => (
+          <TerminalFrame title="PIPELINE — TOP 12" meta="SSI v3.0">
+            <div className="overflow-x-auto">
+              <div className="min-w-[560px]">
+                <div className="grid grid-cols-[40px_1fr_88px_64px_120px_56px] border-b border-border bg-bg px-4 py-2.5 md:px-6">
+                  {["#", "COMPANY", "SECTOR", "SSI", "HQ", "FIT"].map((h) => (
                     <span
                       key={h}
                       className="font-mono text-[9px] font-semibold tracking-[0.1em] text-text-faint"
                     >
                       {h}
                     </span>
-                  )
-                )}
-              </div>
-
-              {/* Rows */}
-              {SIGNALS.map((s, i) => (
-                <motion.div
-                  key={s.company}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-                  className="grid grid-cols-[1fr_64px_48px_64px_88px_64px] gap-0 border-b last:border-0 border-border-subtle px-4 md:px-6 py-3 transition-colors hover:bg-accent-bg/30"
-                >
-                  <span className="font-display text-[13px] font-bold tracking-[-0.02em] text-text">
-                    {s.company}
-                  </span>
-                  <span
-                    className={`font-mono text-[12px] font-semibold ${s.ssi >= 80 ? "text-accent" : "text-text"}`}
+                  ))}
+                </div>
+                {SIGNALS.map((s, i) => (
+                  <motion.div
+                    key={s.company}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.04, ease: EASE }}
+                    className="grid grid-cols-[40px_1fr_88px_64px_120px_56px] items-center border-b border-border-subtle px-4 py-3 transition-colors last:border-0 hover:bg-accent-bg md:px-6"
                   >
-                    {s.ssi}
-                  </span>
-                  <span
-                    className={`font-mono text-[11px] ${s.delta > 0 ? "text-success" : s.delta < 0 ? "text-accent" : "text-text-faint"}`}
-                  >
-                    {s.delta > 0 ? `+${s.delta}` : s.delta}
-                  </span>
-                  <span
-                    className="font-mono text-[10px] font-semibold tracking-[0.04em]"
-                    style={{ color: thesisColor(s.thesis) }}
-                  >
-                    {s.thesis}
-                  </span>
-                  <span className="font-body text-[12px] text-text-muted">
-                    {s.hq}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    {s.heat === "HOT" && (
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-                      </span>
-                    )}
-                    <span
-                      className={`font-mono text-[10px] font-semibold ${s.heat === "HOT" ? "text-accent" : "text-text-muted"}`}
-                    >
-                      {s.heat}
+                    <span className="font-mono text-[10px] tabular-nums text-text-faint">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                  </span>
-                </motion.div>
-              ))}
+                    <span className="font-display text-[13px] font-bold tracking-[-0.02em] text-text">
+                      {s.company}
+                    </span>
+                    <span className="font-mono text-[10px] text-text-muted">
+                      {s.sector}
+                    </span>
+                    <span
+                      className={`font-mono text-[12px] font-semibold tabular-nums ${
+                        s.ssi >= 80 ? "text-accent" : "text-text"
+                      }`}
+                    >
+                      {s.ssi}
+                    </span>
+                    <span className="font-body text-[12px] text-text-muted">
+                      {s.hq}
+                    </span>
+                    <span
+                      className="font-mono text-[10px] font-semibold tracking-[0.04em]"
+                      style={{ color: thesisColor(s.thesis) }}
+                    >
+                      {s.thesis}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
+          </TerminalFrame>
         </motion.div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="font-mono text-[11px] tracking-[0.04em] text-text-muted"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap items-center justify-between gap-4"
         >
-          78 companies tracked &middot; 24 scored &middot; 8 IC-style memos
-          written
-        </motion.p>
+          <p className="font-mono text-[11px] tracking-[0.04em] text-text-muted">
+            {SITE.pipelineCount} companies tracked · scored on the SSI{" "}
+            {SITE.ssiVersion} dual-rubric.
+          </p>
+          <Link
+            href="/signals"
+            className="font-mono text-[11px] font-semibold tracking-[0.06em] text-text-muted transition-colors hover:text-accent"
+          >
+            VIEW THE FULL PIPELINE &rarr;
+          </Link>
+        </motion.div>
       </section>
 
-      {/* ===== SECTION 5: PROOF OF WORK ===== */}
-      <section className="py-20 md:py-28 border-t border-border">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          PROOF OF WORK
-        </motion.span>
+      {/* ===== PROOF OF WORK ===== */}
+      <section className="border-t border-border py-20 md:py-28">
+        <Eyebrow>PROOF OF WORK</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="font-display text-[28px] sm:text-[36px] md:text-[44px] font-extrabold leading-[1.05] tracking-[-0.04em] text-text mb-12 md:mb-16"
+          className="mb-12 font-display text-[28px] font-extrabold leading-[1.05] tracking-[-0.04em] text-text sm:text-[36px] md:text-[44px]"
         >
           THE RECEIPTS.
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-14 md:mb-20">
-          {/* Frameworks */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE }}
-          >
-            <h3 className="font-mono text-[11px] font-semibold tracking-[0.08em] text-accent mb-5">
-              FRAMEWORKS &amp; SYSTEMS
-            </h3>
-            <ul className="flex flex-col gap-3">
-              {FRAMEWORKS.map((f, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-                  className="flex items-start gap-3"
-                >
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
-                  <span className="font-body text-[14px] font-light leading-[1.6] text-text">
-                    {f}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+        <AsciiDivider label="FRAMEWORKS & SYSTEMS" className="mb-8" />
+        <ul className="mb-14 flex flex-col gap-3">
+          {FRAMEWORKS.map((f, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, x: -12 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
+              className="flex items-start gap-3"
+            >
+              <span className="mt-1 font-mono text-[12px] text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="font-body text-[14px] font-light leading-[1.6] text-text">
+                {f}
+              </span>
+            </motion.li>
+          ))}
+        </ul>
 
-          {/* Writing */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          >
-            <h3 className="font-mono text-[11px] font-semibold tracking-[0.08em] text-text-muted mb-5">
-              PUBLISHED WRITING
-            </h3>
-            <ul className="flex flex-col gap-3">
-              {WRITING_LIST.map((w, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.1 + i * 0.06,
-                    ease: EASE,
-                  }}
-                  className="flex items-start gap-3"
-                >
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-border shrink-0" />
-                  <span className="font-body text-[14px] font-light leading-[1.6] text-text-muted">
-                    {w}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
+        <AsciiDivider label="PUBLISHED WRITING" className="mb-8" />
+        <ul className="mb-16 flex flex-col">
+          {WRITING_LIST.map((w, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, x: -12 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
+            >
+              <Link
+                href="/writing"
+                className="flex items-baseline gap-3 border-b border-border-subtle py-3 transition-colors hover:text-accent"
+              >
+                <span className="font-mono text-[11px] text-text-faint">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-body text-[14px] font-light leading-[1.5] text-text-muted">
+                  {w}
+                </span>
+              </Link>
+            </motion.li>
+          ))}
+        </ul>
 
-        {/* Closing */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -612,23 +626,23 @@ export function HomePage() {
           transition={{ duration: 0.8, ease: EASE }}
           className="border-t border-border pt-10 md:pt-14"
         >
-          <p className="font-display text-[18px] md:text-[22px] font-bold tracking-[-0.04em] text-text mb-2">
+          <p className="mb-2 font-display text-[18px] font-bold tracking-[-0.04em] text-text md:text-[22px]">
             Signals over stories. Filings over feelings. Buyers over vibes.
           </p>
-          <p className="font-display text-[24px] md:text-[32px] font-extrabold tracking-[-0.04em] text-accent mb-10">
+          <p className="mb-10 font-display text-[24px] font-extrabold tracking-[-0.04em] text-accent md:text-[32px]">
             Infrastructure compounds.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             <Link
               href="/theses"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#0A0A0A] px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.06em] text-white transition-all duration-300 hover:bg-[#1a1a1a] hover:shadow-lg"
+              className="inline-flex items-center gap-2 bg-ink px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.06em] text-white transition-colors hover:bg-ink-raised"
             >
               READ THE THESES &rarr;
             </Link>
             <Link
-              href="mailto:sevda@anefi.vc"
-              className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.06em] text-text transition-all duration-300 hover:border-accent hover:text-accent"
+              href={`mailto:${SITE.email}`}
+              className="inline-flex items-center gap-2 border border-border px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.06em] text-text transition-colors hover:border-accent hover:text-accent"
             >
               GET IN TOUCH &rarr;
             </Link>
