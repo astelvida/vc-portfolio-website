@@ -35,10 +35,7 @@ Live at **[sevda-vc-portfolio-website](https://vc-portfolio-website.vercel.app/)
 
 ## Local development
 
-The Next.js app lives in [`sevda-site/`](sevda-site).
-
 ```bash
-cd sevda-site
 npm install
 npm run dev      # http://localhost:3000
 ```

@@ -1,6 +1,6 @@
 # sevda-site
 
-Next.js 15 portfolio site for Sevda Anefi — early-stage European AI investor-operator.
+Next.js 16 portfolio site for Sevda Anefi — early-stage European AI investor-operator.
 
 Brand: **Signals Over Stories** · Domain: anefi.vc · Substack: signalsoverstories.substack.com
 
@@ -42,3 +42,12 @@ Investment positioning, career facts, and writing list are sourced from Notion
 (canonical CV + Investor Profile pages). When updating site content, verify
 against those before editing — the site should not drift from the canonical
 investor positioning.
+
+## Next.js version notice
+
+<!-- BEGIN:nextjs-agent-rules -->
+**This is NOT the Next.js you know.** This version has breaking changes — APIs,
+conventions, and file structure may all differ from your training data. Read the
+relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed
+deprecation notices.
+<!-- END:nextjs-agent-rules -->
