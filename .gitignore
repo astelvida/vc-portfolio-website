@@ -33,10 +33,7 @@ npm-debug.log*
 
 # Playwright MCP scratch output
 .playwright-mcp/
-*-desktop.png
-*-mobile.png
-scroll-*.png
-engine-rubric.png
+/*.png
 
 # pnpm (project uses npm — pnpm lock/workspace files are not authoritative)
 pnpm-lock.yaml
