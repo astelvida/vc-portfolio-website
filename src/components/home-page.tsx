@@ -260,11 +260,11 @@ export function HomePage() {
               </div>
               <Link
                 href="/theses"
-                className="flex items-center justify-between border-t border-border px-5 py-3 font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted transition-colors hover:text-accent"
+                className="group/link flex items-center justify-between gap-3 border-t border-border px-5 py-3 font-mono text-[10px] font-semibold tracking-[0.08em] text-text-muted transition-colors hover:text-accent"
               >
-                <span>READ THE THESIS &rarr;</span>
-                <span className="tracking-[0.1em] text-text-faint">
-                  {thesis.controlPoint}
+                <span>READ THE THESIS</span>
+                <span className="transition-transform duration-300 group-hover/link:translate-x-1">
+                  &rarr;
                 </span>
               </Link>
             </motion.div>

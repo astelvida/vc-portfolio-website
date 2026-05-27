@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { AsciiDivider } from "@/components/ascii-divider";
+import { CAREER_ARC } from "@/data/edge";
+import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -8,132 +12,164 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About | Sevda Anefi",
     description:
-      "From JPMorgan and Morgan Stanley to DAZN and Duffel to anefi.vc.",
+      "From J.P. Morgan and Morgan Stanley to DAZN and Duffel to anefi.vc.",
   },
 };
 
-const CAREER = [
+const BIO = [
+  "Structured products at J.P. Morgan and Morgan Stanley — securitised credit, rating-agency coordination, the institutional discipline of thinking in downside, structure, and incentives before upside.",
+  "Production engineering at DAZN, Funding Circle, and Duffel — shipping code that handles real money and real scale. I read repositories, LLM integration patterns, and implementation risk, not just decks.",
+  "Now early-stage European AI through anefi.vc — co-founded out of Antler, with an operator track that runs through a 159-employee family retail ERP rollout in CEE. Two theses, a 24-company pipeline, the SSI v3.0 scoring model. Based between London and Bucharest. Four languages.",
+];
+
+const CONTRIBUTIONS = [
   {
-    phase: "FINANCE",
-    color: "#6366F1",
-    companies: "Morgan Stanley · JPMorgan SPG",
-    period: "2013–2014",
+    label: "UNDERINDEXED SOURCING",
+    body: "European AI surfaced before it is obvious — across CEE and technical founder corridors.",
   },
   {
-    phase: "ENGINEERING",
-    color: "#10B981",
-    companies: "DAZN · Funding Circle · Duffel",
-    period: "2017–2022",
+    label: "TECHNICAL DILIGENCE",
+    body: "Product depth, LLM integration, infra claims and repo artifacts, translated into an investment view.",
   },
   {
-    phase: "VENTURE",
-    color: "#E63312",
-    companies: "Antler · anefi.vc",
-    period: "2023–now",
+    label: "REGULATORY JUDGMENT",
+    body: "EU AI Act, DORA, AMLA and procurement read as category-creation signals, not admin noise.",
   },
+  {
+    label: "REPEATABLE SYSTEMS",
+    body: "Live pipelines, scoring frameworks, memo templates, agentic sourcing loops — not static notes.",
+  },
+];
+
+const CONTACT = [
+  { label: "EMAIL", value: SITE.email, href: `mailto:${SITE.email}` },
+  {
+    label: "SUBSTACK",
+    value: SITE.substack,
+    href: "https://signalsoverstories.substack.com",
+  },
+  {
+    label: "LINKEDIN",
+    value: SITE.linkedin,
+    href: "https://linkedin.com/in/sevda-anefi",
+  },
+  { label: "GITHUB", value: "github.com/astelvida", href: "https://github.com/astelvida" },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col gap-14">
+    <div className="flex flex-col gap-16 py-4 md:gap-20">
+      {/* Header */}
       <SectionWrapper>
-        <h1 className="font-display text-4xl font-extrabold tracking-[-0.04em] text-text">
-          ABOUT
-        </h1>
+        <div className="flex flex-col gap-5">
+          <span className="font-mono text-[10px] font-semibold tracking-[0.22em] text-text-muted">
+            [ ABOUT ]
+          </span>
+          <h1 className="font-display text-[40px] font-extrabold leading-[1.0] tracking-[-0.045em] text-text sm:text-[54px] md:text-[64px]">
+            Capital, code, and{" "}
+            <span className="text-accent">company-building.</span>
+          </h1>
+          <p className="max-w-[600px] font-body text-[15px] font-light leading-[1.7] text-text-muted md:text-[16px]">
+            Sevda Anefi — a European AI investor-operator combining
+            institutional finance, software engineering, and CEE market access.
+            That mix lets me assess markets, pressure-test product claims, read
+            technical systems, and turn fragmented signals into investment
+            judgment.
+          </p>
+        </div>
       </SectionWrapper>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        {/* Bio */}
-        <SectionWrapper delay={70}>
-          <div className="flex flex-col gap-6">
-            <p className="max-w-[460px] font-body text-[15px] font-light leading-[1.7] text-text">
-              Structured products at JPMorgan and Morgan Stanley — building
-              models for things that don&apos;t behave the way their docs say
-              they will.
-            </p>
-            <p className="max-w-[460px] font-body text-[15px] font-light leading-[1.7] text-text">
-              Production engineering at DAZN, Duffel, and Funding Circle —
-              shipping code that handles real money at real scale.
-            </p>
-            <p className="max-w-[460px] font-body text-[15px] font-light leading-[1.7] text-text">
-              Now early-stage European AI through anefi.vc. Two theses, 24
-              companies tracked, the SSI v3.0 dual-rubric scoring model. Based
-              between London and Bucharest. Four languages.
-            </p>
-          </div>
-        </SectionWrapper>
+      {/* Bio */}
+      <div className="flex flex-col gap-8">
+        <AsciiDivider label="THE ARC" />
+        <div className="grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-3">
+          {BIO.map((para, i) => (
+            <SectionWrapper key={i} delay={i * 80}>
+              <div className="flex flex-col gap-3">
+                <span className="font-mono text-[11px] font-semibold tracking-[0.1em] text-accent">
+                  0{i + 1}
+                </span>
+                <p className="font-body text-[14px] font-light leading-[1.7] text-text">
+                  {para}
+                </p>
+              </div>
+            </SectionWrapper>
+          ))}
+        </div>
+      </div>
 
-        {/* Career Arc Panel */}
-        <SectionWrapper delay={140}>
-          <div className="rounded-[10px] border border-border bg-surface transition-all duration-[250ms] hover:border-border-hover hover:shadow-lg">
-            <div className="border-b border-border px-4 py-3">
-              <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted">
-                CAREER ARC | 2016 → NOW
-              </span>
-            </div>
-            <div className="divide-y divide-border-subtle">
-              {CAREER.map((item, i) => (
-                <div
-                  key={item.phase}
-                  className="flex items-center gap-3 md:gap-4 px-4 md:px-6 py-4"
-                  style={{
-                    animation: `row-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms both`,
-                  }}
-                >
-                  <span
-                    className="h-2.5 w-2.5 shrink-0 rounded-full"
-                    style={{ backgroundColor: item.color }}
-                  />
-                  <div className="flex flex-1 flex-col gap-0.5">
-                    <span
-                      className="font-mono text-[10px] font-semibold tracking-[0.06em]"
-                      style={{ color: item.color }}
-                    >
-                      {item.phase}
-                    </span>
-                    <span className="font-body text-sm font-light text-text">
-                      {item.companies}
-                    </span>
-                  </div>
-                  <span className="font-mono text-[10px] tracking-[0.06em] text-text-faint">
-                    {item.period}
+      {/* Career arc */}
+      <div className="flex flex-col gap-8">
+        <AsciiDivider label="CAREER" />
+        <div className="grid grid-cols-1 gap-px border border-border bg-border md:grid-cols-3">
+          {CAREER_ARC.map((era, i) => (
+            <SectionWrapper key={era.phase} delay={i * 80}>
+              <div className="flex h-full items-start gap-3 bg-surface px-5 py-6">
+                <div className="h-10 w-[3px] shrink-0 bg-accent" />
+                <div className="flex flex-col gap-1">
+                  <span className="font-mono text-[10px] tracking-[0.1em] text-text-faint">
+                    {era.period}
+                  </span>
+                  <span className="font-mono text-[12px] font-semibold tracking-[0.06em] text-text">
+                    {era.phase}
+                  </span>
+                  <span className="font-body text-[13px] font-light text-text-muted">
+                    {era.detail}
                   </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </SectionWrapper>
+              </div>
+            </SectionWrapper>
+          ))}
+        </div>
+      </div>
+
+      {/* What I bring */}
+      <div className="flex flex-col gap-8">
+        <AsciiDivider label="WHAT I BRING TO A FUND" />
+        <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2">
+          {CONTRIBUTIONS.map((item, i) => (
+            <SectionWrapper key={item.label} delay={i * 70}>
+              <div className="flex h-full flex-col gap-2 bg-surface p-6">
+                <span className="font-mono text-[11px] font-semibold tracking-[0.08em] text-accent">
+                  {item.label}
+                </span>
+                <p className="font-body text-[13.5px] font-light leading-[1.65] text-text-muted">
+                  {item.body}
+                </p>
+              </div>
+            </SectionWrapper>
+          ))}
+        </div>
       </div>
 
       {/* Contact */}
-      <SectionWrapper delay={210}>
-        <div className="flex flex-col gap-3">
-          <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted">
-            CONTACT
+      <SectionWrapper>
+        <div className="flex flex-col gap-6 border-t border-border pt-10">
+          <span className="font-mono text-[10px] font-semibold tracking-[0.22em] text-text-muted">
+            [ CONTACT ]
           </span>
-          <div className="flex flex-wrap gap-6">
-            <a
-              href="mailto:sevda@anefi.vc"
-              className="font-mono text-xs tracking-[0.06em] text-accent transition-colors hover:text-accent/80"
-            >
-              sevda@anefi.vc
-            </a>
-            <a
-              href="https://signalsoverstories.substack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs tracking-[0.06em] text-accent transition-colors hover:text-accent/80"
-            >
-              signalsoverstories.substack.com
-            </a>
-            <a
-              href="https://linkedin.com/in/sevda-anefi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs tracking-[0.06em] text-accent transition-colors hover:text-accent/80"
-            >
-              linkedin.com/in/sevda-anefi
-            </a>
+          <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2">
+            {CONTACT.map((c) => (
+              <Link
+                key={c.label}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group flex items-center justify-between gap-3 bg-surface px-5 py-4 transition-colors hover:bg-accent-bg"
+              >
+                <span className="flex flex-col gap-0.5">
+                  <span className="font-mono text-[9px] tracking-[0.14em] text-text-faint">
+                    {c.label}
+                  </span>
+                  <span className="font-mono text-[12px] tracking-[0.04em] text-text transition-colors group-hover:text-accent">
+                    {c.value}
+                  </span>
+                </span>
+                <span className="font-mono text-text-faint transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent">
+                  &rarr;
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </SectionWrapper>

@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ConvictionBar } from "./conviction-bar";
+import { AsciiDivider } from "./ascii-divider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -13,11 +14,10 @@ const THESES_DEEP = [
     color: "#E63312",
     tagline: "The deployment gateway for enterprise AI.",
     description:
-      "The next durable AI infrastructure layer in regulated Europe is not a model. It is the runtime gateway that makes autonomous workflows governable, observable, auditable, and safe enough for banks, insurers, hospitals, and public bodies to deploy. Eval, observability, audit evidence, policy enforcement, human-in-the-loop \u2014 one stack, one buyer, one decisive control point.",
+      "The next durable AI infrastructure layer in regulated Europe is not a model. It is the runtime gateway that makes autonomous workflows governable, observable, auditable, and safe enough for banks, insurers, hospitals, and public bodies to deploy. Eval, observability, audit evidence, policy enforcement, human-in-the-loop — one stack, one buyer, one decisive control point.",
     controlPoint: "Runtime policy enforcement + audit evidence",
     buyerPain: "Deploy AI without regulatory or operational blowback",
     proofSignal: "Sandbox participation, runtime controls, named regulated buyer",
-    icon: "\u{1f6e1}\ufe0f",
   },
   {
     code: "VSRAI",
@@ -30,7 +30,6 @@ const THESES_DEEP = [
     controlPoint: "System of record write-back + domain data flywheel",
     buyerPain: "Reduce labour, latency, documentation load",
     proofSignal: "Bidirectional SoR integration, domain data flywheel, named operator buyer",
-    icon: "\u{1f3d7}\ufe0f",
   },
 ];
 
@@ -71,35 +70,51 @@ const EU_EDGE = [
 ];
 
 const PARAMETERS = [
-  { param: "Stage", target: "Pre-seed to Series A (EUR 500K\u20133M checks)" },
-  { param: "Geography", target: "EU / UK / CEE \u2014 regulation-native founders" },
-  { param: "Timing", target: "EU AI Act Annex III window through Dec 2 2027 (Omnibus). 6\u201318 month buying cycle." },
+  { param: "Stage", target: "Pre-seed to Series A (EUR 500K–3M checks)" },
+  { param: "Geography", target: "EU / UK / CEE — regulation-native founders" },
+  {
+    param: "Timing",
+    target:
+      "EU AI Act Annex III window through Dec 2 2027 (Omnibus). 6–18 month buying cycle.",
+  },
   { param: "Moat Test", target: "Inside mandatory workflow? SoR gravity? Runtime evidence?" },
-  { param: "Avoid", target: "Wrappers, consulting-as-software, GDPR bolt-ons, horizontal dashboards" },
+  {
+    param: "Avoid",
+    target: "Wrappers, consulting-as-software, GDPR bolt-ons, horizontal dashboards",
+  },
 ];
+
+function Eyebrow({ children, ink = false }: { children: string; ink?: boolean }) {
+  return (
+    <motion.span
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      className={`mb-6 block font-mono text-[10px] font-semibold tracking-[0.22em] ${
+        ink ? "text-white/45" : "text-text-muted"
+      }`}
+    >
+      [ {children} ]
+    </motion.span>
+  );
+}
 
 export function ThesisPage() {
   return (
     <div className="-mt-6 md:-mt-9">
       {/* ===== HERO ===== */}
-      <section className="full-bleed relative overflow-hidden bg-[#0A0A0A]">
-        <div className="absolute inset-0 hero-grid opacity-[0.035]" />
+      <section className="full-bleed relative overflow-hidden bg-ink">
+        <div className="absolute inset-0 hero-grid opacity-[0.04]" />
 
-        <div className="relative mx-auto max-w-[1100px] px-4 md:px-9 py-16 md:py-24">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.1, ease: EASE }}
-            className="font-mono text-[10px] font-semibold tracking-[0.1em] text-white/30 mb-6 block"
-          >
-            INVESTMENT THESIS PACK
-          </motion.span>
+        <div className="relative mx-auto max-w-[1100px] px-4 py-16 md:px-9 md:py-24">
+          <Eyebrow ink>INVESTMENT THESIS PACK</Eyebrow>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-            className="font-display text-[36px] sm:text-[48px] md:text-[64px] font-extrabold leading-[1.0] tracking-[-0.04em] text-white mb-6"
+            transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+            className="mb-6 font-display text-[36px] font-extrabold leading-[1.0] tracking-[-0.045em] text-white sm:text-[48px] md:text-[64px]"
           >
             Two conviction bets on
             <br />
@@ -109,8 +124,8 @@ export function ThesisPage() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45, ease: EASE }}
-            className="max-w-[560px] font-body text-[15px] md:text-[17px] font-light leading-[1.7] text-white/50"
+            transition={{ duration: 0.6, delay: 0.4, ease: EASE }}
+            className="max-w-[560px] font-body text-[15px] font-light leading-[1.7] text-white/55 md:text-[17px]"
           >
             Governed Agentic Ops earns deployment permission. Vertical
             System-of-Record AI captures workflow gravity. This is where the
@@ -121,21 +136,14 @@ export function ThesisPage() {
 
       {/* ===== THE HOUSE VIEW ===== */}
       <section className="py-20 md:py-28">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          THE HOUSE VIEW
-        </motion.span>
+        <Eyebrow>THE HOUSE VIEW</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="font-display text-[24px] sm:text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text max-w-[700px] mb-6"
+          className="mb-6 max-w-[700px] font-display text-[24px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[32px] md:text-[40px]"
         >
           Most AI capital chases model superiority.{" "}
           <span className="text-accent">That is the wrong frame.</span>
@@ -146,20 +154,20 @@ export function ThesisPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          className="max-w-[640px] flex flex-col gap-4 mb-6"
+          className="mb-6 flex max-w-[640px] flex-col gap-4"
         >
           <p className="font-body text-[15px] font-light leading-[1.7] text-text-muted">
             Models commoditize on every release cycle. What compounds is the
-            infrastructure around them &mdash; runtime governance that earns
+            infrastructure around them — runtime governance that earns
             deployment permission, and vertical AI that owns the system of
             record where regulated work is created, verified, and acted on.
           </p>
           <p className="font-body text-[15px] font-light leading-[1.7] text-text-muted">
             I invest where regulatory pressure converts into structural demand.
-            Europe is not behind in AI &mdash; it is building a different
-            category of moat. The EU AI Act, DORA, NIS2, EHDS, AMLA, MDR, and
-            IVDR are not drag. They are distribution channels for startups that
-            embed compliance and workflow at the runtime layer.
+            Europe is not behind in AI — it is building a different category of
+            moat. The EU AI Act, DORA, NIS2, EHDS, AMLA, MDR, and IVDR are not
+            drag. They are distribution channels for startups that embed
+            compliance and workflow at the runtime layer.
           </p>
         </motion.div>
 
@@ -176,17 +184,10 @@ export function ThesisPage() {
       </section>
 
       {/* ===== TWO THESES ===== */}
-      <section className="py-20 md:py-28 border-t border-border">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          TWO THESES. ONE STACK.
-        </motion.span>
+      <section className="border-t border-border py-20 md:py-28">
+        <Eyebrow>TWO THESES · ONE STACK</Eyebrow>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           {THESES_DEEP.map((thesis, i) => (
             <motion.div
               key={thesis.code}
@@ -194,23 +195,18 @@ export function ThesisPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
-              className="group relative rounded-[12px] border border-border bg-surface transition-all duration-300 hover:border-border-hover hover:shadow-xl overflow-hidden"
+              className="group relative overflow-hidden border border-border bg-surface transition-colors duration-300 hover:border-border-hover"
             >
-              {/* Top accent */}
               <div
-                className="absolute top-0 left-0 right-0 h-[2px]"
+                className="absolute left-0 right-0 top-0 h-[3px]"
                 style={{ backgroundColor: thesis.color }}
               />
 
               <div className="flex flex-col md:flex-row">
-                {/* Left: Conviction Ring + Meta */}
-                <div className="flex flex-col items-center justify-center gap-4 border-b md:border-b-0 md:border-r border-border px-8 py-8 md:py-10 md:min-w-[200px] bg-bg/50">
-                  {/* Conviction Ring */}
+                {/* Conviction */}
+                <div className="flex flex-col items-center justify-center gap-4 border-b border-border bg-bg px-8 py-8 md:min-w-[210px] md:border-b-0 md:border-r md:py-10">
                   <div className="relative h-24 w-24">
-                    <svg
-                      className="h-24 w-24 -rotate-90"
-                      viewBox="0 0 96 96"
-                    >
+                    <svg className="h-24 w-24 -rotate-90" viewBox="0 0 96 96">
                       <circle
                         cx="48"
                         cy="48"
@@ -231,13 +227,12 @@ export function ThesisPage() {
                       />
                     </svg>
                     <span
-                      className="absolute inset-0 flex items-center justify-center font-display text-xl font-bold"
+                      className="absolute inset-0 flex items-center justify-center font-display text-xl font-extrabold tabular-nums"
                       style={{ color: thesis.color }}
                     >
                       {thesis.conviction}
                     </span>
                   </div>
-
                   <div className="flex flex-col items-center gap-1">
                     <span
                       className="font-mono text-[12px] font-semibold tracking-[0.06em]"
@@ -245,12 +240,11 @@ export function ThesisPage() {
                     >
                       {thesis.code}
                     </span>
-                    <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint">
+                    <span className="font-mono text-[9px] tracking-[0.14em] text-text-faint">
                       CONVICTION
                     </span>
                   </div>
-
-                  <div className="w-full max-w-[140px]">
+                  <div className="w-full max-w-[150px]">
                     <ConvictionBar
                       percentage={thesis.conviction}
                       color={thesis.color}
@@ -259,13 +253,19 @@ export function ThesisPage() {
                   </div>
                 </div>
 
-                {/* Right: Content */}
-                <div className="flex-1 p-6 md:p-8 flex flex-col gap-5">
+                {/* Content */}
+                <div className="flex flex-1 flex-col gap-5 p-6 md:p-8">
                   <div>
-                    <h3 className="font-display text-[20px] md:text-[24px] font-extrabold tracking-[-0.04em] text-text mb-2">
+                    <span className="mb-2 block font-mono text-[10px] font-semibold tracking-[0.1em] text-text-faint">
+                      THESIS {String.fromCharCode(65 + i)}
+                    </span>
+                    <h3 className="mb-2 font-display text-[20px] font-extrabold tracking-[-0.04em] text-text md:text-[24px]">
                       {thesis.name}
                     </h3>
-                    <p className="font-display text-[14px] font-bold tracking-[-0.02em] text-accent">
+                    <p
+                      className="font-display text-[14px] font-bold tracking-[-0.02em]"
+                      style={{ color: thesis.color }}
+                    >
                       {thesis.tagline}
                     </p>
                   </div>
@@ -274,32 +274,21 @@ export function ThesisPage() {
                     {thesis.description}
                   </p>
 
-                  {/* Meta Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-auto">
-                    <div className="rounded-md border border-border-subtle bg-bg/60 px-4 py-3">
-                      <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint block mb-1">
-                        CONTROL POINT
-                      </span>
-                      <span className="font-body text-[13px] font-medium text-text">
-                        {thesis.controlPoint}
-                      </span>
-                    </div>
-                    <div className="rounded-md border border-border-subtle bg-bg/60 px-4 py-3">
-                      <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint block mb-1">
-                        BUYER PAIN
-                      </span>
-                      <span className="font-body text-[13px] font-medium text-text">
-                        {thesis.buyerPain}
-                      </span>
-                    </div>
-                    <div className="rounded-md border border-border-subtle bg-bg/60 px-4 py-3">
-                      <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint block mb-1">
-                        PROOF SIGNAL
-                      </span>
-                      <span className="font-body text-[13px] font-medium text-text">
-                        {thesis.proofSignal}
-                      </span>
-                    </div>
+                  <div className="mt-auto grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-3">
+                    {[
+                      { k: "CONTROL POINT", v: thesis.controlPoint },
+                      { k: "BUYER PAIN", v: thesis.buyerPain },
+                      { k: "PROOF SIGNAL", v: thesis.proofSignal },
+                    ].map((m) => (
+                      <div key={m.k} className="flex flex-col gap-1 bg-surface px-4 py-3">
+                        <span className="font-mono text-[9px] tracking-[0.12em] text-text-faint">
+                          {m.k}
+                        </span>
+                        <span className="font-body text-[13px] font-medium leading-[1.45] text-text">
+                          {m.v}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -309,25 +298,17 @@ export function ThesisPage() {
       </section>
 
       {/* ===== HOW IT COMPOUNDS ===== */}
-      <section className="py-20 md:py-28 border-t border-border">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          HOW IT COMPOUNDS
-        </motion.span>
+      <section className="border-t border-border py-20 md:py-28">
+        <Eyebrow>HOW IT COMPOUNDS</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="font-display text-[24px] sm:text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text max-w-[600px] mb-4"
+          className="mb-4 max-w-[600px] font-display text-[24px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[32px] md:text-[40px]"
         >
-          Not two themes.{" "}
-          <span className="text-accent">One stack.</span>
+          Not two themes. <span className="text-accent">One stack.</span>
         </motion.h2>
 
         <motion.p
@@ -335,27 +316,27 @@ export function ThesisPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          className="max-w-[520px] font-body text-[15px] font-light leading-[1.7] text-text-muted mb-12"
+          className="mb-12 max-w-[520px] font-body text-[15px] font-light leading-[1.7] text-text-muted"
         >
           These are not two unrelated bets. They are one stack seen from two
           altitudes. Each thesis reinforces the other.
         </motion.p>
 
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 gap-px border border-border bg-border">
           {COMPOUNDS.map((c, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
-              className="flex items-start gap-4 rounded-[10px] border border-border bg-surface p-5 transition-all duration-300 hover:border-border-hover"
+              className="flex items-start gap-4 bg-surface p-5"
             >
-              <div className="flex flex-col items-center gap-1 shrink-0 pt-0.5">
+              <div className="flex shrink-0 flex-col items-center gap-1 pt-0.5">
                 <span className="font-mono text-[10px] font-semibold tracking-[0.04em] text-accent">
                   {c.from}
                 </span>
-                <span className="text-text-faint text-xs">&darr;</span>
+                <span className="text-xs text-text-faint">&darr;</span>
                 <span className="font-mono text-[10px] font-semibold tracking-[0.04em] text-text-muted">
                   {c.to}
                 </span>
@@ -369,22 +350,15 @@ export function ThesisPage() {
       </section>
 
       {/* ===== EUROPEAN STRUCTURAL EDGE ===== */}
-      <section className="py-20 md:py-28 border-t border-border">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          THE EUROPEAN EDGE
-        </motion.span>
+      <section className="border-t border-border py-20 md:py-28">
+        <Eyebrow>THE EUROPEAN EDGE</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="font-display text-[24px] sm:text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text max-w-[600px] mb-4"
+          className="mb-4 max-w-[600px] font-display text-[24px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[32px] md:text-[40px]"
         >
           This is not an apology thesis.
         </motion.h2>
@@ -394,7 +368,7 @@ export function ThesisPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          className="max-w-[560px] font-body text-[15px] font-light leading-[1.7] text-text-muted mb-12 md:mb-16"
+          className="mb-12 max-w-[560px] font-body text-[15px] font-light leading-[1.7] text-text-muted md:mb-14"
         >
           Europe has a genuine structural advantage. Regulation creates markets.
           Domain expertise is non-transferable. Jurisdiction-specific regulatory
@@ -402,7 +376,7 @@ export function ThesisPage() {
           replicate from San Francisco.
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 gap-px border border-border bg-border md:grid-cols-3">
           {EU_EDGE.map((item, i) => (
             <motion.div
               key={i}
@@ -410,12 +384,12 @@ export function ThesisPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
-              className="rounded-[10px] border border-border bg-surface p-6 transition-all duration-300 hover:border-border-hover hover:shadow-lg"
+              className="flex flex-col gap-3 bg-surface p-6"
             >
-              <span className="font-display text-[28px] md:text-[36px] font-extrabold tracking-[-0.04em] text-accent block mb-1">
+              <span className="font-display text-[28px] font-extrabold tracking-[-0.04em] text-accent md:text-[36px]">
                 {item.stat}
               </span>
-              <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted block mb-3">
+              <span className="font-mono text-[10px] font-semibold tracking-[0.08em] text-text-muted">
                 {item.label.toUpperCase()}
               </span>
               <p className="font-body text-[13px] font-light leading-[1.6] text-text-muted">
@@ -427,62 +401,47 @@ export function ThesisPage() {
       </section>
 
       {/* ===== INVESTMENT PARAMETERS ===== */}
-      <section className="py-20 md:py-28 border-t border-border">
-        <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted mb-6 block"
-        >
-          INVESTMENT PARAMETERS
-        </motion.span>
+      <section className="border-t border-border py-20 md:py-28">
+        <Eyebrow>INVESTMENT PARAMETERS</Eyebrow>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="rounded-[10px] border border-border bg-surface overflow-hidden mb-12"
+          className="mb-14 border border-border"
         >
-          {PARAMETERS.map((p, i) => (
-            <motion.div
+          {PARAMETERS.map((p) => (
+            <div
               key={p.param}
-              initial={{ opacity: 0, x: -12 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-              className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0 border-b last:border-0 border-border-subtle px-5 md:px-6 py-4"
+              className="flex flex-col gap-1 border-b border-border-subtle px-5 py-4 last:border-0 sm:flex-row sm:items-center sm:gap-0 md:px-6"
             >
-              <span className="font-mono text-[11px] font-semibold tracking-[0.06em] text-accent sm:w-[140px] shrink-0">
+              <span className="shrink-0 font-mono text-[11px] font-semibold tracking-[0.06em] text-accent sm:w-[150px]">
                 {p.param.toUpperCase()}
               </span>
               <span className="font-body text-[14px] font-light text-text-muted">
                 {p.target}
               </span>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
 
-        {/* Closing */}
+        <AsciiDivider label="SIGNALS OVER STORIES" className="mb-10" />
+
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="border-t border-border pt-10 md:pt-14"
         >
-          <p className="font-display text-[18px] md:text-[22px] font-bold tracking-[-0.04em] text-text mb-2">
+          <p className="mb-2 font-display text-[18px] font-bold tracking-[-0.04em] text-text md:text-[22px]">
             Signals over stories. Filings over feelings. Buyers over vibes.
           </p>
-          <p className="font-display text-[24px] md:text-[32px] font-extrabold tracking-[-0.04em] text-accent mb-4">
+          <p className="mb-4 font-display text-[24px] font-extrabold tracking-[-0.04em] text-accent md:text-[32px]">
             Infrastructure compounds.
           </p>
           <p className="font-mono text-[11px] tracking-[0.04em] text-text-faint">
-            Sevda Anefi &middot; March 2026 &middot; anefi.vc
-          </p>
-          <p className="font-mono text-[10px] tracking-[0.04em] text-text-faint mt-1">
-            IB (JPMorgan, Morgan Stanley) &times; Engineering (DAZN, Duffel,
-            Funding Circle) &times; VC Ops (Antler)
+            Sevda Anefi &middot; May 2026 &middot; anefi.vc
           </p>
         </motion.div>
       </section>
