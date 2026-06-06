@@ -21,10 +21,10 @@ export function RepoCard({ repo }: { repo: GitHubRepo }) {
       href={repo.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex h-full flex-col overflow-hidden rounded-[10px] border border-border bg-surface transition-all duration-[250ms] hover:-translate-y-0.5 hover:border-border-hover hover:shadow-lg"
+      className="group flex h-full flex-col overflow-hidden border border-border bg-surface transition-colors duration-200 hover:border-border-hover"
     >
       {/* Image — prod screenshot, or GitHub repo preview card */}
-      <div className="relative aspect-[16/9] overflow-hidden bg-border-subtle">
+      <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-border-subtle">
         <img
           src={repo.image}
           alt={repo.name}
@@ -35,7 +35,7 @@ export function RepoCard({ repo }: { repo: GitHubRepo }) {
 
       {/* Header bar — language · stars · last updated */}
       <div className="flex items-center justify-between border-b border-border px-4 py-3">
-        <span className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted">
+        <span className="font-mono text-[10px] font-semibold tracking-[0.08em] text-accent">
           {repo.language ?? "REPO"}
         </span>
         <span className="flex items-center gap-3 font-mono text-[10px] tracking-[0.06em] text-text-faint">
@@ -46,7 +46,7 @@ export function RepoCard({ repo }: { repo: GitHubRepo }) {
 
       {/* Body */}
       <div className="flex flex-1 flex-col gap-2 p-6">
-        <h3 className="font-display text-base font-bold tracking-[-0.04em] text-text">
+        <h3 className="font-display text-base font-extrabold tracking-[-0.03em] text-text">
           {repo.name}
         </h3>
         <p className="font-body text-sm font-light leading-[1.6] text-text-muted">

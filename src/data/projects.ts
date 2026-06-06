@@ -6,38 +6,38 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    title: "Signal Tracker Dashboard",
+    title: "SoR Matrix Tracker",
     description:
-      "Live SSI pipeline tracker with 78 European AI companies.",
-    stack: "Next.js + Notion",
+      "Live SSI pipeline tracker for the European AI infrastructure shortlist — 24 companies tracked publicly.",
+    stack: "Next.js + Notion ISR",
   },
   {
-    title: "SSI Scoring Model",
+    title: "SSI v3.0 Scoring Model",
     description:
-      "Proprietary 11-dimension signal scoring framework (v2.0).",
+      "Dual-rubric scoring framework — 8 Governed Agentic Ops dimensions and 8 Vertical SoR AI dimensions, separation enforced at the data layer.",
     stack: "Python + data pipeline",
   },
   {
-    title: "Deal Sourcing OS",
+    title: "Scout → Score → Memo Engine",
     description:
-      "8-agent pipeline architecture for automated deal sourcing.",
+      "Three-agent sourcing-to-memo loop: scout signals, score against the rubric, draft the IC-style memo.",
     stack: "Claude Code + MCP",
   },
   {
     title: "Signals Over Stories",
-    description: "Bi-weekly newsletter on European AI investing.",
+    description: "Investment publication on Governed Agentic Ops and Vertical System-of-Record AI.",
     stack: "Substack",
   },
   {
     title: "Portfolio Site",
     description:
-      "This site. Next.js 15 + Notion CMS + Substack RSS. Grid Breach design system.",
-    stack: "Next.js 15 + Substack RSS",
+      "This site. Next.js 16 + Notion CMS + Substack RSS. Brutalist-editorial terminal design system.",
+    stack: "Next.js 16 + Substack RSS",
   },
   {
-    title: "Fund Outreach Engine",
+    title: "VC Research Skill Suite",
     description:
-      "Automated personalized outreach to 13 target funds.",
-    stack: "React + Notion MCP",
+      "Proprietary Claude skills for filings parsing, procurement signal extraction, and marketplace co-sell detection.",
+    stack: "Claude Skills + MCP",
   },
 ];

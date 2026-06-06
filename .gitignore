@@ -24,11 +24,16 @@ npm-debug.log*
 # macOS
 .DS_Store
 
-# Claude Code session metadata
-.claude/
+# Claude Code — track project config (settings.json, skills/), ignore personal/session files
+.claude/*
+!.claude/settings.json
+!.claude/skills/
+.claude/skills/*/.cache/
+.claude/plans/
 
 # Playwright MCP scratch output
 .playwright-mcp/
+/*.png
 
 # pnpm (project uses npm — pnpm lock/workspace files are not authoritative)
 pnpm-lock.yaml

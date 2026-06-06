@@ -1,19 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F7F5F0;
+  /* Light surface — Visual Style System v1.0 (Notion, 21 May 2026) */
+  --bg: #FAFAF7;
   --surface: #FFFFFF;
-  --border: #E0DDD6;
-  --border-subtle: #F0EDEA;
-  --border-hover: #C8C5BE;
+  --border: #D6D2C4;
+  --border-subtle: #E8E5DC;
+  --border-hover: #BFB9A6;
   --accent: #E63312;
   --accent-bg: rgba(230, 51, 18, 0.08);
-  --text: #111111;
-  --text-muted: #999999;
-  --text-faint: #CCCCCC;
+  --text: #1A1A1A;
+  --text-muted: #6B6B6B;
+  --text-faint: #A8A39A;
   --success: #22C55E;
+  --warm: #F59E0B;
   --thesis-gao: #E63312;
   --thesis-vsrai: #6366F1;
+
+  /* Dark slabs — tokenised so JSX stops using arbitrary #0A0A0A / #1a1a1a */
+  --ink: #0A0A0A;
+  --ink-raised: #161616;
+  --ink-border: rgba(255, 255, 255, 0.10);
+  --ink-muted: rgba(255, 255, 255, 0.46);
+  --ink-faint: rgba(255, 255, 255, 0.28);
+
+  /* Layout measures */
+  --measure-column: 1100px;
+  --measure-wide: 1320px;
 }
 
 @theme inline {
@@ -28,12 +41,19 @@
   --color-text-muted: var(--text-muted);
   --color-text-faint: var(--text-faint);
   --color-success: var(--success);
+  --color-warm: var(--warm);
   --color-thesis-gao: var(--thesis-gao);
   --color-thesis-vsrai: var(--thesis-vsrai);
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-border: var(--ink-border);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
   --font-display: var(--font-syne);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-jetbrains-mono);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 body {
@@ -43,6 +63,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Layout helpers */
 .full-bleed {
   width: 100vw;
   position: relative;
@@ -50,10 +71,27 @@ body {
   transform: translateX(-50%);
 }
 
+.measure-column {
+  max-width: var(--measure-column);
+}
+
+.measure-wide {
+  max-width: var(--measure-wide);
+}
+
+/* 60px instrument grid — white lines for dark (ink) slabs */
 .hero-grid {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* 60px instrument grid — dark lines for light (paper) sections */
+.terminal-grid {
+  background-image:
+    linear-gradient(rgba(26, 26, 26, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -119,5 +157,38 @@ body {
 @keyframes conviction-bar {
   from {
     width: 0%;
+  }
+}
+
+/* Terminal cursor */
+@keyframes caret-blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Decode reveal — no-JS / reduced-motion fallback for ScrambleText */
+@keyframes decode-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

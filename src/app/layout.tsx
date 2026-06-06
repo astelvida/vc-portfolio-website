@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Link from "next/link";
 import { LiveClock } from "@/components/live-clock";
 import { GrainOverlay } from "@/components/grain-overlay";
+import { SiteNav } from "@/components/site-nav";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { SITE } from "@/data/site";
 import "./globals.css";
 
 const syne = localFont({
@@ -37,11 +39,11 @@ export const metadata: Metadata = {
     template: "%s | Sevda Anefi",
   },
   description:
-    "Early-stage European AI investor. Three investment theses backed by a proprietary signal model.",
+    "Early-stage European AI investor-operator. Two investment theses scored by the proprietary SSI v3.0 dual-rubric signal model.",
   openGraph: {
     title: "Sevda Anefi — Early-Stage European AI",
     description:
-      "Three investment theses backed by a proprietary signal model.",
+      "Two investment theses, scored by the SSI v3.0 dual-rubric signal model.",
     type: "website",
     locale: "en_US",
   },
@@ -51,16 +53,6 @@ export const metadata: Metadata = {
     },
   },
 };
-
-const NAV_LINKS = [
-  { href: "/", label: "HOME" },
-  { href: "/theses", label: "THESES" },
-  { href: "/methodology", label: "METHODOLOGY" },
-  { href: "/signals", label: "SIGNALS" },
-  { href: "/writing", label: "WRITING" },
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/about", label: "ABOUT" },
-];
 
 export default function RootLayout({
   children,
@@ -72,10 +64,12 @@ export default function RootLayout({
       lang="en"
       className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-body">
+      <body className="flex min-h-full flex-col font-body">
+        <ScrollProgress />
+
         {/* Status Bar */}
-        <div className="w-full border-b border-border bg-surface">
-          <div className="mx-auto max-w-[1100px] px-4 md:px-9 flex items-center justify-between py-2">
+        <div className="w-full border-b border-border bg-bg">
+          <div className="mx-auto flex max-w-[1100px] items-center justify-between px-4 py-2 md:px-9">
             <div className="flex items-center gap-3 font-mono text-[9px] tracking-[0.06em] text-text-muted">
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5">
@@ -84,10 +78,10 @@ export default function RootLayout({
                 </span>
                 SYSTEM ACTIVE
               </span>
-              <span className="hidden md:inline text-text-faint">|</span>
-              <span className="hidden md:inline">78 TRACKED</span>
-              <span className="hidden md:inline text-text-faint">|</span>
-              <span className="hidden md:inline">2 THESES LIVE</span>
+              <span className="hidden text-text-faint md:inline">|</span>
+              <span className="hidden md:inline">{SITE.pipelineCount} TRACKED</span>
+              <span className="hidden text-text-faint md:inline">|</span>
+              <span className="hidden md:inline">{SITE.thesisCount} THESES LIVE</span>
               <span className="text-text-faint">|</span>
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5">
@@ -97,45 +91,24 @@ export default function RootLayout({
                 SOURCING
               </span>
             </div>
-            <div className="hidden sm:flex items-center gap-3 font-mono text-[9px] tracking-[0.06em] text-text-muted">
-              <span>LDN / BUH</span>
+            <div className="hidden items-center gap-3 font-mono text-[9px] tracking-[0.06em] text-text-muted sm:flex">
+              <span>{SITE.locations}</span>
               <span className="text-text-faint">|</span>
               <LiveClock />
             </div>
           </div>
         </div>
 
-        {/* Navigation */}
-        <nav className="w-full border-b border-border bg-surface">
-          <div className="mx-auto max-w-[1100px] px-4 md:px-9 flex items-center gap-4 md:gap-6 py-3">
-            <Link
-              href="/"
-              className="font-display text-sm font-bold tracking-[-0.04em] text-text shrink-0"
-            >
-              SEVDA ANEFI
-            </Link>
-            <div className="flex items-center gap-3 md:gap-5 overflow-x-auto no-scrollbar -mx-1 px-1 ml-auto">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="font-mono text-[10px] font-semibold tracking-[0.06em] text-text-muted whitespace-nowrap transition-colors duration-200 hover:text-text shrink-0"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </nav>
+        <SiteNav />
 
-        {/* Main Content */}
         <main className="flex-1">
-          <div className="mx-auto max-w-[1100px] px-4 py-6 md:px-9 md:py-9">{children}</div>
+          <div className="mx-auto max-w-[1100px] px-4 py-6 md:px-9 md:py-9">
+            {children}
+          </div>
         </main>
 
-        {/* Footer */}
-        <footer className="w-full border-t border-border bg-surface">
-          <div className="mx-auto max-w-[1100px] px-4 md:px-9 py-6 flex items-center justify-between">
+        <footer className="w-full border-t border-border bg-bg">
+          <div className="mx-auto flex max-w-[1100px] items-center justify-between px-4 py-6 md:px-9">
             <span className="font-mono text-[10px] tracking-[0.06em] text-text-muted">
               &copy; {new Date().getFullYear()} SEVDA ANEFI
             </span>

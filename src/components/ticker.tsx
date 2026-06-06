@@ -1,24 +1,15 @@
 "use client";
 
-const TICKER_DATA = [
-  "TORTUS AI 82 · VSRAI · London",
-  "Deeploy 80 · GAO · Amsterdam",
-  "Alinia 79 · GAO · London",
-  "Holistic AI 78 · GAO · London",
-  "REMATIQ 77 · VSRAI · Berlin",
-  "Lakera 75 · GAO · Zurich",
-  "QuantPi 72 · GAO · Berlin",
-  "Legora · VSRAI · Stockholm",
-  "Shift Technology · VSRAI · Paris",
-  "Geordie · GAO · London",
-];
+import { SIGNALS } from "@/data/signals";
 
 interface TickerProps {
   variant?: "light" | "dark";
 }
 
 export function Ticker({ variant = "light" }: TickerProps) {
-  const content = TICKER_DATA.join("  —  ");
+  const content = SIGNALS.map(
+    (s) => `${s.company} · SSI ${s.ssi} · ${s.thesis} · ${s.hq}`
+  ).join("    —    ");
   const isDark = variant === "dark";
 
   return (
@@ -30,13 +21,10 @@ export function Ticker({ variant = "light" }: TickerProps) {
       }`}
     >
       <div
-        className={`flex whitespace-nowrap font-mono text-[10px] font-medium tracking-[0.06em] ${
-          isDark ? "text-white/25" : "text-text-muted"
+        className={`flex w-max whitespace-nowrap font-mono text-[10px] font-medium tracking-[0.06em] ${
+          isDark ? "text-white/30" : "text-text-muted"
         }`}
-        style={{
-          animation: "ticker-scroll 30s linear infinite",
-          width: "max-content",
-        }}
+        style={{ animation: "ticker-scroll 38s linear infinite" }}
       >
         <span className="px-4">{content}</span>
         <span className="px-4">{content}</span>

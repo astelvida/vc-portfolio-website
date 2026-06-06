@@ -15,7 +15,7 @@ export function FeaturedPost({ post }: { post: SubstackPost }) {
   return (
     <Wrapper
       {...linkProps}
-      className="group block overflow-hidden rounded-[10px] border border-border bg-surface transition-all duration-[250ms] hover:-translate-y-0.5 hover:border-border-hover hover:shadow-lg"
+      className="group block overflow-hidden border border-border bg-surface transition-colors duration-200 hover:border-border-hover"
     >
       {/* Image */}
       <div className="relative aspect-[21/9] overflow-hidden bg-border-subtle">
@@ -27,15 +27,15 @@ export function FeaturedPost({ post }: { post: SubstackPost }) {
             className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-border-subtle to-border">
-            <span className="font-display text-6xl font-bold tracking-[-0.04em] text-text-faint/30">
+          <div className="flex h-full w-full items-center justify-center bg-ink">
+            <span className="font-display text-6xl font-extrabold tracking-[-0.04em] text-white/15">
               SOS
             </span>
           </div>
         )}
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+        {/* Legibility scrim for overlaid text */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
 
         {/* Content over image */}
         <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-3 p-6 md:p-8">
@@ -54,7 +54,7 @@ export function FeaturedPost({ post }: { post: SubstackPost }) {
               })}
             </span>
           </div>
-          <h2 className="font-display text-2xl font-bold tracking-[-0.04em] text-white md:text-3xl">
+          <h2 className="font-display text-2xl font-extrabold tracking-[-0.04em] text-white md:text-3xl">
             {post.title}
           </h2>
           <p className="max-w-[520px] font-body text-sm font-light leading-[1.6] text-white/80">

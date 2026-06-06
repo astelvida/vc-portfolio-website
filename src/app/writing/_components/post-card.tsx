@@ -14,11 +14,11 @@ export function PostCard({ post }: { post: SubstackPost }) {
   return (
     <Wrapper
       {...linkProps}
-      className="group flex flex-col overflow-hidden rounded-[10px] border border-border bg-surface transition-all duration-[250ms] hover:-translate-y-0.5 hover:border-border-hover hover:shadow-lg"
+      className="group flex flex-col overflow-hidden border border-border bg-surface transition-colors duration-200 hover:border-border-hover"
     >
       {/* Thumbnail */}
       {post.thumbnail && (
-        <div className="relative aspect-[16/9] overflow-hidden bg-border-subtle">
+        <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-border-subtle">
           <img
             src={post.thumbnail}
             alt={post.title}
@@ -30,8 +30,10 @@ export function PostCard({ post }: { post: SubstackPost }) {
 
       {/* Header bar */}
       <div className="flex items-center justify-between border-b border-border px-4 py-3">
-        {post.categories[0] && (
+        {post.categories[0] ? (
           <CategoryBadge category={post.categories[0]} />
+        ) : (
+          <span />
         )}
         <span className="font-mono text-[10px] tracking-[0.06em] text-text-faint">
           {new Date(post.pubDate).toLocaleDateString("en-GB", {
@@ -44,7 +46,7 @@ export function PostCard({ post }: { post: SubstackPost }) {
 
       {/* Body */}
       <div className="flex flex-1 flex-col gap-2 p-5">
-        <h3 className="font-display text-base font-bold tracking-[-0.04em] text-text">
+        <h3 className="font-display text-base font-extrabold tracking-[-0.03em] text-text transition-colors group-hover:text-accent">
           {post.title}
         </h3>
         <p className="line-clamp-2 font-body text-sm font-light leading-[1.6] text-text-muted">
