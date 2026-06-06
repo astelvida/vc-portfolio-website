@@ -1,7 +1,7 @@
 function badgeColorClass(category: string): string {
-  if (category === "Framework") return "bg-thesis-cai/8 text-thesis-cai";
-  if (category === "Memo") return "bg-thesis-inf/8 text-thesis-inf";
-  return "bg-thesis-vai/8 text-thesis-vai";
+  if (category === "Framework") return "bg-thesis-gao/10 text-thesis-gao";
+  if (category === "Memo") return "bg-thesis-vsrai/10 text-thesis-vsrai";
+  return "bg-accent-bg text-accent";
 }
 
 export function CategoryBadge({
@@ -15,12 +15,12 @@ export function CategoryBadge({
 }) {
   const colorClasses =
     variant === "overlay"
-      ? "bg-white/15 text-white backdrop-blur-sm"
+      ? "bg-white/15 text-white"
       : badgeColorClass(category);
 
   return (
     <span
-      className={`rounded px-2 py-0.5 font-mono text-[10px] font-semibold ${colorClasses} ${className ?? ""}`}
+      className={`px-2 py-0.5 font-mono text-[10px] font-semibold tracking-[0.04em] ${colorClasses} ${className ?? ""}`}
     >
       {category}
     </span>

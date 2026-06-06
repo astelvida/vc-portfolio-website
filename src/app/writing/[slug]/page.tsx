@@ -68,7 +68,7 @@ export default async function ArticlePage({
       {/* Hero image */}
       <SectionWrapper delay={70}>
         {post.thumbnail ? (
-          <div className="overflow-hidden rounded-[10px]">
+          <div className="overflow-hidden border border-border">
             <img
               src={post.thumbnail}
               alt={post.title}
@@ -77,8 +77,8 @@ export default async function ArticlePage({
             />
           </div>
         ) : (
-          <div className="flex aspect-[21/9] items-center justify-center overflow-hidden rounded-[10px] bg-gradient-to-br from-border-subtle to-border">
-            <span className="font-display text-6xl font-bold tracking-[-0.04em] text-text-faint/30">
+          <div className="flex aspect-[21/9] items-center justify-center overflow-hidden border border-border bg-ink">
+            <span className="font-display text-6xl font-extrabold tracking-[-0.04em] text-white/15">
               SOS
             </span>
           </div>
@@ -132,9 +132,9 @@ export default async function ArticlePage({
       {relatedPosts.length > 0 && (
         <SectionWrapper delay={350}>
           <div className="flex flex-col gap-6">
-            <h2 className="font-display text-xl font-bold tracking-[-0.04em] text-text">
-              More writing
-            </h2>
+            <span className="font-mono text-[10px] font-semibold tracking-[0.22em] text-text-muted">
+              [ MORE WRITING ]
+            </span>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {relatedPosts.map((p) => (
                 <PostCard key={p.slug || p.title} post={p} />

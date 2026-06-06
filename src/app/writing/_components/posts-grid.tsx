@@ -39,10 +39,10 @@ export function PostsGrid({ posts }: { posts: SubstackPost[] }) {
   return (
     <div className="flex flex-col gap-8">
       {/* Section header */}
-      <div className="flex items-center justify-between">
-        <h2 className="font-display text-2xl font-bold tracking-[-0.04em] text-text">
-          All posts
-        </h2>
+      <div className="flex items-center justify-between border-b border-border pb-3">
+        <span className="font-mono text-[10px] font-semibold tracking-[0.22em] text-text-muted">
+          [ ALL POSTS ]
+        </span>
         <span className="font-mono text-[10px] tracking-[0.06em] text-text-faint">
           {filteredPosts.length} {filteredPosts.length === 1 ? "POST" : "POSTS"}
         </span>
@@ -53,10 +53,10 @@ export function PostsGrid({ posts }: { posts: SubstackPost[] }) {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => handleTagClick(null)}
-            className={`rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-[0.06em] transition-colors duration-200 ${
+            className={`border px-3 py-1 font-mono text-[10px] font-semibold tracking-[0.06em] transition-colors duration-200 ${
               activeTag === null
-                ? "bg-accent text-white"
-                : "bg-border-subtle text-text-muted hover:bg-border hover:text-text"
+                ? "border-accent bg-accent text-white"
+                : "border-border text-text-muted hover:border-border-hover hover:text-text"
             }`}
           >
             ALL
@@ -65,10 +65,10 @@ export function PostsGrid({ posts }: { posts: SubstackPost[] }) {
             <button
               key={tag}
               onClick={() => handleTagClick(tag)}
-              className={`rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-[0.06em] transition-colors duration-200 ${
+              className={`border px-3 py-1 font-mono text-[10px] font-semibold tracking-[0.06em] transition-colors duration-200 ${
                 activeTag === tag
-                  ? "bg-accent text-white"
-                  : "bg-border-subtle text-text-muted hover:bg-border hover:text-text"
+                  ? "border-accent bg-accent text-white"
+                  : "border-border text-text-muted hover:border-border-hover hover:text-text"
               }`}
             >
               {tag.toUpperCase()}
@@ -89,9 +89,9 @@ export function PostsGrid({ posts }: { posts: SubstackPost[] }) {
         <div className="flex justify-center">
           <button
             onClick={() => setVisibleCount((c) => c + INITIAL_COUNT)}
-            className="rounded-[10px] border border-border bg-surface px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.06em] text-text-muted transition-all duration-200 hover:border-border-hover hover:text-text hover:shadow-md"
+            className="border border-border bg-surface px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.06em] text-text-muted transition-colors duration-200 hover:border-accent hover:text-accent"
           >
-            LOAD MORE
+            LOAD MORE +
           </button>
         </div>
       )}
