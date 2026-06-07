@@ -232,7 +232,7 @@ export function MethodologyPage() {
         <div className="absolute inset-0 hero-grid opacity-[0.04]" />
 
         <div className="relative mx-auto max-w-[1100px] px-4 py-16 md:px-9 md:py-24">
-          <Eyebrow ink>SCOUT METHODOLOGY · v5.0 · VERIFIED 18 MAY 2026</Eyebrow>
+          <Eyebrow ink>SCOUT METHODOLOGY · v6.1.1 · VERIFIED 07 JUN 2026</Eyebrow>
 
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
@@ -489,7 +489,7 @@ export function MethodologyPage() {
 
       {/* ===== REGULATORY CONTEXT ===== */}
       <section className="border-t border-border py-20 md:py-28">
-        <Eyebrow>REGULATORY CONTEXT · VERIFIED 12 MAY 2026</Eyebrow>
+        <Eyebrow>REGULATORY CONTEXT · VERIFIED 07 JUN 2026</Eyebrow>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
@@ -632,8 +632,8 @@ export function MethodologyPage() {
           </div>
 
           <p className="mt-10 font-mono text-[10px] tracking-[0.04em] text-text-faint">
-            Scout Methodology v5.0 · Last verified 18 May 2026 · Next review 18
-            Aug 2026
+            Scout Methodology v6.1.1 · Last verified 7 Jun 2026 · Next review 7
+            Sep 2026
           </p>
         </motion.div>
       </section>
