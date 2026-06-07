@@ -27,13 +27,14 @@ src/
 ├── app/          # Routes. layout.tsx (nav, fonts, status bar), globals.css (design tokens)
 ├── components/   # Shared UI (kebab-case files; "use client" only where noted)
 ├── lib/          # Live data fetchers (substack.ts, github.ts)
-├── data/         # Static positioning canon (theses.ts, signals.ts, projects.ts)
+├── data/         # Static positioning canon (theses, signals, projects, rubric, edge, frameworks, site)
 ├── types/        # Shared TS interfaces
 └── fonts/        # Self-hosted woff2 (Syne, DM Sans, JetBrains Mono)
 ```
 
-Routes: `/`, `/about`, `/theses`, `/methodology`, `/signals`, `/writing` (+ `/writing/[slug]`),
-`/projects`. Plus `app/api/substack/route.ts`, `app/feed/route.ts`, `app/robots.ts`, `app/sitemap.ts`.
+Routes: `/`, `/about`, `/theses`, `/methodology`, `/signals`, `/engine`, `/writing`
+(+ `/writing/[slug]`), `/projects`. Plus `app/api/substack/route.ts`, `app/feed/route.ts`,
+`app/robots.ts`, `app/sitemap.ts`. (`/engine` is the Scouting Engine page — Scout → Score → Memo.)
 
 **Two-speed data model.** Content is either *live* (fetched at runtime, ISR 1-hour, with a
 hardcoded fallback so the site never blanks) or *static* (compiled in, changes only on rebuild).
@@ -46,9 +47,12 @@ Know which tier you're editing — see the table below.
 | Essays / writing list | Live | `src/lib/substack.ts` (Substack RSS) | Auto, ISR 1-hour |
 | Open-source repos (`/projects`) | Live | `src/lib/github.ts` (GitHub API, `astelvida/*`) | Auto, ISR 1-hour |
 | Theses, signals, projects | Static | `src/data/theses.ts`, `src/data/signals.ts`, `src/data/projects.ts` | Manual edit + rebuild |
+| Headline numbers + contact (single source) | Static | `src/data/site.ts` (`SITE`, `HERO_STATS`) — used by layout, home, about, signals, engine | Manual edit |
+| SSI v3.0 dual-rubric (GAO + VSRAI dimensions) | Static | `src/data/rubric.ts` (`RUBRICS`, `SSI_TIERS`) — used by `/engine` | Manual edit |
+| EU edge pillars | Static | `src/data/edge.ts` (`EDGE_PILLARS`) — used by `/about`, home | Manual edit |
+| Frameworks list + static writing titles | Static | `src/data/frameworks.ts` (`FRAMEWORKS`, `WRITING_LIST`) — used by home | Manual edit |
 | Career arc | Static | `src/app/about/page.tsx` (`CAREER`) | Manual edit |
-| Deep thesis content, EU edge stats | Static | `src/components/thesis-page.tsx` | Manual edit |
-| Frameworks, writing titles | Static | `src/components/home-page.tsx` | Manual edit |
+| Deep thesis content | Static | `src/components/thesis-page.tsx` | Manual edit |
 | Hero ticker | Static | `src/components/ticker.tsx` | Manual edit |
 
 Static positioning is duplicated in places (e.g. conviction numbers live in both
