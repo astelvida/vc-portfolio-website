@@ -38,3 +38,6 @@ npm-debug.log*
 # pnpm (project uses npm — pnpm lock/workspace files are not authoritative)
 pnpm-lock.yaml
 pnpm-workspace.yaml
+
+# Cursor/VS Code — auto-generated terminal environment report buffers
+Environment changes*
