@@ -88,7 +88,7 @@ const REGULATORY = [
   {
     name: "Digital Omnibus",
     cite: "AI Act simplification",
-    timeline: "Political agreement 7 May 2026 · Annex III up to 2 Dec 2027 · Annex II up to 2 Aug 2028 if tools not ready",
+    timeline: "Political agreement 7 May 2026 · Annex III high-risk up to 2 Dec 2027 · Annex I product-embedded high-risk up to 2 Aug 2028",
     status: "🟩 Agreed · Official Journal publication pending",
     implication: "Do not treat delay as bearish. Uncertainty raises demand for readiness tooling.",
   },

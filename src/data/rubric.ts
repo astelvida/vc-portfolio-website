@@ -12,8 +12,8 @@ export interface Rubric {
   dimensions: RubricDimension[];
 }
 
-// SSI v3.0 dual-rubric, sourced from the canonical Notion Methodology page
-// (Scouting Engine v5.0, verified 18 May 2026). Each rubric totals 100 points.
+// SSI v3.0 dual-rubric. Dimension set reconciled against the canonical Notion
+// "AI VC Investor Profile" (v1.2, verified 28 May 2026). Each rubric totals 100 points.
 export const RUBRICS: Rubric[] = [
   {
     thesis: "GAO",
