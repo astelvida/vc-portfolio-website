@@ -34,6 +34,7 @@ const jetbrainsMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
     default: "Sevda Anefi — Early-Stage European AI",
     template: "%s | Sevda Anefi",

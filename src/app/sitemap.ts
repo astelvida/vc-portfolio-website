@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/data/site";
 
-const BASE_URL = "https://sevda.anefi.vc";
+const BASE_URL = SITE.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

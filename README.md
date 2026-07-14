@@ -1,6 +1,6 @@
 # Signals Over Stories
 
-**[Sevda Anefi](https://anefi.vc)** — early-stage European AI investor-operator.
+**[Sevda Anefi](https://vc-portfolio-website.vercel.app/)** — early-stage European AI investor-operator.
 The working portfolio behind a systematic approach to sourcing and scoring pre-seed
 to Series A AI companies in regulated European markets.
 
@@ -100,4 +100,4 @@ npm run start    # serve the production build
 
 ---
 
-Built by [Sevda Anefi](https://anefi.vc). Deployed on Vercel.
+Built by [Sevda Anefi](https://vc-portfolio-website.vercel.app/). Deployed on Vercel.

@@ -1,4 +1,6 @@
-const BASE_URL = "https://sevda.anefi.vc";
+import { SITE } from "@/data/site";
+
+const BASE_URL = SITE.url;
 
 const POSTS = [
   {

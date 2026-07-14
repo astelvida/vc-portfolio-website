@@ -3,6 +3,7 @@
 // and the live Companies database under the Scouting Engine.
 
 export const SITE = {
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://vc-portfolio-website.vercel.app",
   pipelineCount: 24,
   thesisCount: 2,
   rubricDimensions: 16,

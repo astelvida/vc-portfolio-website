@@ -2,19 +2,13 @@
 
 Next.js 16 portfolio site for Sevda Anefi — early-stage European AI investor-operator.
 
-Brand: **Signals Over Stories** · Domain: anefi.vc · Substack: signalsoverstories.substack.com
+Brand: **Signals Over Stories** · Live: vc-portfolio-website.vercel.app · Substack: signalsoverstories.substack.com
 
 This site is the owner's most important professional asset. It is read by VCs, LPs,
 and founders — hold every change to a top-tier bar: factually exact, on-brand, and
 visually disciplined. When in doubt, verify before you ship.
 
 ## Commands
-
-```bash
-npm run dev       # Dev server (Turbopack, http://localhost:3000)
-npm run build     # Production build
-npm run start     # Serve production build
-```
 
 No lint or test scripts exist. `npm run build` is the gate — it must pass before any commit.
 
@@ -80,7 +74,7 @@ or re-number theses without an explicit instruction.
 ## Design system: Grid Breach V2
 
 - Fonts: Syne (display), DM Sans (body), JetBrains Mono (data/mono)
-- Colors: warm off-white bg (#F7F5F0), vermillion accent (#E63312); dark hero sections use #0A0A0A ink
+- Colors: warm off-white bg (#FAFAF7), vermillion accent (#E63312); dark hero sections use #0A0A0A ink
 - All animations use `cubic-bezier(0.16, 1, 0.3, 1)`
 - One accent color — restraint signals discipline
 
