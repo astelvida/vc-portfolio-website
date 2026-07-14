@@ -14,17 +14,5 @@
       "mcp__playwright__browser_console_messages",
       "mcp__playwright__browser_click"
     ]
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "command -v google-chrome >/dev/null 2>&1 || npx --yes playwright install chrome >/dev/null 2>&1 || true"
-          }
-        ]
-      }
-    ]
   }
 }
