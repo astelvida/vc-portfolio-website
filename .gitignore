@@ -31,8 +31,9 @@ npm-debug.log*
 .claude/skills/*/.cache/
 .claude/plans/
 
-# Playwright MCP scratch output
+# Browser-automation scratch output (screenshots, snapshots, console logs)
 .playwright-mcp/
+.playwright-cli/
 /*.png
 
 # pnpm (project uses npm — pnpm lock/workspace files are not authoritative)

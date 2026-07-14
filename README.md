@@ -56,18 +56,21 @@ EHDS, and AMLA — each tied to the thesis it pressures.
 - **Home** — the house view: both theses and the SSI pipeline at a glance.
 - **Theses** — GAO and VSRAI in full: conviction, control points, buyer pain, kill criteria.
 - **Methodology** — the SSI rubrics, the three-layer signal architecture, and the regulatory map.
+- **Engine** — the Scouting Engine: how signals become scored companies, Scout → Score → Memo.
 - **Signals** — the live pipeline, top companies ranked by SSI.
-- **Projects** — tools built for sourcing and scoring, plus open-source repos pulled live from GitHub.
 - **Writing** — *Signals Over Stories* essays, synced from Substack.
+- **Projects** — tools built for sourcing and scoring, plus open-source repos pulled live from GitHub.
+- **About** — the operator background behind the fund: finance, engineering, and CEE market access.
 
 ## Engineering
 
 Built the way the tools worth backing are built — typed, server-first, and resilient.
 
-- **Next.js 16** — App Router, React 19, Turbopack; Server Components by default
+- **Next.js 16** — App Router, React 19, Turbopack (the default bundler in v16); Server Components by default
 - **TypeScript** — strict mode, no `any`
 - **Tailwind CSS 4** — the *Grid Breach* design system, one accent color
 - **Motion** — scroll-triggered animation on a single shared easing curve
+- **Type** — self-hosted **Syne** (display), **DM Sans** (body), **JetBrains Mono** (data), as woff2 in `src/fonts/`
 
 **Two-speed data model.** Live content (essays via Substack RSS, repos via the GitHub API) is
 fetched on a 1-hour ISR cycle, each with a hardcoded fallback so the site never blanks if an

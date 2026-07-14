@@ -42,10 +42,10 @@ Know which tier you're editing — see the table below.
 | Open-source repos (`/projects`) | Live | `src/lib/github.ts` (GitHub API, `astelvida/*`) | Auto, ISR 1-hour |
 | Theses, signals, projects | Static | `src/data/theses.ts`, `src/data/signals.ts`, `src/data/projects.ts` | Manual edit + rebuild |
 | Headline numbers + contact (single source) | Static | `src/data/site.ts` (`SITE`, `HERO_STATS`) — used by layout, home, about, signals, engine | Manual edit |
-| SSI v3.0 dual-rubric (GAO + VSRAI dimensions) | Static | `src/data/rubric.ts` (`RUBRICS`, `SSI_TIERS`) — used by `/engine` | Manual edit |
+| SSI v3.0 dual-rubric (GAO + VSRAI dimensions) | Static | `src/data/rubric.ts` (`RUBRICS`, `SSI_TIERS`) — **single source**, used by `/methodology` (full table) and referenced from `/engine` | Manual edit |
 | EU edge pillars | Static | `src/data/edge.ts` (`EDGE_PILLARS`) — used by `/about`, home | Manual edit |
 | Frameworks list + static writing titles | Static | `src/data/frameworks.ts` (`FRAMEWORKS`, `WRITING_LIST`) — used by home | Manual edit |
-| Career arc | Static | `src/app/about/page.tsx` (`CAREER`) | Manual edit |
+| Career arc | Static | `src/data/edge.ts` (`CAREER_ARC`) — used by `/about` and home | Manual edit |
 | Deep thesis content | Static | `src/components/thesis-page.tsx` | Manual edit |
 | Hero ticker | Static | `src/components/ticker.tsx` | Manual edit |
 
@@ -63,6 +63,11 @@ When updating positioning content:
 2. Verify the current site copy against it — note every drift.
 3. Hand-edit the matching file from the data table above (`src/data/*.ts` or the named component).
 4. Rebuild and confirm.
+
+> The Notion MCP is a **user-level dependency**, not provisioned by this repo — there is no
+> `.mcp.json` entry for it. A fresh clone will not have it wired up; it must be configured in the
+> user's Claude Code setup. If `notion-search` / `notion-fetch` are unavailable, stop and say so
+> rather than editing positioning from memory.
 
 Never invent or extrapolate positioning, company facts, or figures. If it isn't in Notion or a
 canonical source, it doesn't ship.
@@ -90,10 +95,26 @@ or re-number theses without an explicit instruction.
 
 ## Research & tooling
 
-- **Always use Context7** (`context7` MCP) for any library/framework/API/CLI docs before writing
-  code. Don't answer library questions from memory — versions move faster than training data.
-- **Use WebSearch / WebFetch** to get the latest market data, company facts, regulatory dates, or
-  to research anything investor-facing before adding or changing it. Confirm, then write.
+**Prefer live sources over memory.** This repo runs bleeding-edge versions (Next.js 16, React 19,
+Tailwind 4) whose behavior post-dates most training data. For anything version-sensitive, verify
+before you write — do not answer from recall.
+
+- **Library / framework / API / CLI docs → Context7** (`context7` MCP), before writing code. For
+  Next.js specifically, the vendored docs in `node_modules/next/dist/docs/` are the exact version
+  this project ships — read them (see the Next.js version notice below).
+- **Market data, company facts, regulatory dates, anything investor-facing → WebSearch / WebFetch.**
+  Confirm against a primary source, then write. This is doubly load-bearing here: positioning must
+  trace to Notion or a canonical source (see Source of truth above).
+- **Visual verification → Playwright.** This is the owner's most important professional asset and
+  the bar is "visually disciplined" — verify UI changes by looking, not by assuming.
+  - Default to the **Playwright MCP** (`mcp__plugin_playwright_playwright__*`, provided by the
+    playwright plugin) for interactive checks: navigate, snapshot, screenshot, read console.
+    These tools are allow-listed in `.claude/settings.json`.
+  - Use the **`playwright-cli` skill** for batch work the MCP can't do in one shot — full-page
+    capture across many routes, or light/dark rendering via `emulateMedia`. Note: pages have a
+    live ticking clock, so wait on `load`, not `networkidle`.
+  - Scratch output (`.playwright-mcp/`, `.playwright-cli/`, root `*.png`) is gitignored — clean up
+    stray screenshots before finishing.
 
 ## Brand mantras (for copy)
 
