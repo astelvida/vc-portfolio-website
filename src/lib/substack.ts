@@ -38,36 +38,51 @@ function sanitizeHtml(html: string): string {
     .replace(/href\s*=\s*["']?\s*javascript:[^"'\s>]*/gi, 'href="#"');
 }
 
+// Shown only when the live feed is unreachable. Every entry mirrors a real
+// published post — title, slug and permalink included — so a Substack outage
+// degrades to essays that still resolve. Reconciled against the feed 14 Jul 2026.
 export const FALLBACK_POSTS: SubstackPost[] = [
   {
-    title: "Score the Thesis, Not the Company",
-    description: "Why I built a dual-rubric scoring model.",
-    link: "https://signalsoverstories.substack.com/",
-    pubDate: "2026-03-31",
-    categories: ["Framework"],
-    thumbnail: null,
-    slug: "",
-    content: "",
-  },
-  {
-    title: "The Invisible Giant: Europe's Ownership Gap",
+    title: "What PitchBook Gets Wrong About European AI",
     description:
-      "Europe's structural disadvantage is an early-stage advantage.",
-    link: "https://signalsoverstories.substack.com/",
-    pubDate: "2026-02-12",
-    categories: ["Memo"],
+      "Seven contrarian signals from the Q1 2026 analyst note — and where the rough diamonds are.",
+    link: "https://signalsoverstories.substack.com/p/what-pitchbook-gets-wrong-about-european",
+    pubDate: "Wed, 08 Apr 2026 19:15:21 GMT",
+    categories: [],
     thumbnail: null,
-    slug: "",
+    slug: "what-pitchbook-gets-wrong-about-european",
     content: "",
   },
   {
-    title: "SaaSpocalypse: Who Survives Outcome Pricing",
-    description: "Mapping vertical AI on pricing risk.",
-    link: "https://signalsoverstories.substack.com/",
-    pubDate: "2026-01-28",
-    categories: ["Analysis"],
+    title: "Score the Thesis, Not the Company",
+    description:
+      "SSI v2.0: Why I Rebuilt the Only Scoring Framework That Actually Works for European Regulated AI",
+    link: "https://signalsoverstories.substack.com/p/score-the-thesis-not-the-company",
+    pubDate: "Tue, 31 Mar 2026 20:17:12 GMT",
+    categories: [],
     thumbnail: null,
-    slug: "",
+    slug: "score-the-thesis-not-the-company",
+    content: "",
+  },
+  {
+    title:
+      "The NVIDIA Gravity Well: Why AI Startups Orbit It (Even When They Pretend They Don't)",
+    description: "Europe doesn't have an “AI talent problem.”",
+    link: "https://signalsoverstories.substack.com/p/the-nvidia-gravity-well-why-ai-startups",
+    pubDate: "Mon, 02 Feb 2026 13:35:02 GMT",
+    categories: [],
+    thumbnail: null,
+    slug: "the-nvidia-gravity-well-why-ai-startups",
+    content: "",
+  },
+  {
+    title: "Signals Over Stories: AI, Capital, and Constraints",
+    description: "AI investing without narrative inflation",
+    link: "https://signalsoverstories.substack.com/p/signals-over-stories-ai-capital-and",
+    pubDate: "Sat, 17 Jan 2026 15:07:11 GMT",
+    categories: [],
+    thumbnail: null,
+    slug: "signals-over-stories-ai-capital-and",
     content: "",
   },
 ];

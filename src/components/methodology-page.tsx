@@ -3,37 +3,17 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { AsciiDivider } from "./ascii-divider";
+import { RUBRICS, SSI_TIERS, type RubricDimension } from "@/data/rubric";
+import type { ThesisCode } from "@/data/signals";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const GAO_RUBRIC = [
-  { code: "G1", dim: "Regulatory Embeddedness", pts: 20, note: "Sandbox, standards body, regulator consultation, notified-body tooling" },
-  { code: "G2", dim: "Runtime Governance Architecture", pts: 18, note: "Audit trails, observability, HITL, policy enforcement at execution" },
-  { code: "G3", dim: "Regulatory-Technical Team Fit", pts: 15, note: "Senior hires from regulated buyers, ex-regulator, credible security" },
-  { code: "G4", dim: "Governance Build Velocity", pts: 12, note: "Sustained governance commits, not a pre-raise compliance sprint" },
-  { code: "G5", dim: "Enterprise Buyer Traction", pts: 12, note: "Named regulated buyer, identifiable budget owner, real procurement" },
-  { code: "G6", dim: "Technical Moat", pts: 10, note: "Differentiated evals, runtime, model-agnostic control plane" },
-  { code: "G7", dim: "Capital Efficiency", pts: 8, note: "Buyer-paid pilots, focused wedge, revenue vs. burn" },
-  { code: "G8", dim: "Investor Signal Quality", pts: 5, note: "EIC, strategic, specialist regtech vs. tourist AI capital" },
-];
-
-const VSRAI_RUBRIC = [
-  { code: "V1", dim: "System-of-Record Integration Depth", pts: 20, note: "Bidirectional write into EHR / QMS / PLM / core banking / claims" },
-  { code: "V2", dim: "Domain Data Advantage", pts: 18, note: "Regulated workflow data, authority access, proprietary ontology" },
-  { code: "V3", dim: "Team Domain Pedigree", pts: 15, note: "Clinician-founder, ex-regulator, head-of-ops buyer, vertical operator" },
-  { code: "V4", dim: "Workflow Lock-In Evidence", pts: 12, note: "Multi-user, multi-department, task routing, approvals, exceptions" },
-  { code: "V5", dim: "Regulatory Alignment", pts: 12, note: "EHDS, DORA, AMLA, MDR/IVDR, Solvency II — sector-specific mapping" },
-  { code: "V6", dim: "Switching Cost Architecture", pts: 10, note: "Longitudinal records, templates, integrations, feedback history" },
-  { code: "V7", dim: "Market Timing", pts: 8, note: "Regulatory deadline, labour shortage, margin compression" },
-  { code: "V8", dim: "Capital Efficiency", pts: 5, note: "Narrow wedge, repeatable buyer, data reuse, implementation playbook" },
-];
-
-const TIERS = [
-  { code: "P0", range: "80+", label: "Highest Conviction", action: "Act within 48 hours: founder call, source validation, memo stub", color: "#E63312" },
-  { code: "P1", range: "65–79", label: "Strong", action: "Deep dive this week: validate buyer, traction, signal freshness", color: "#F59E0B" },
-  { code: "P2", range: "50–64", label: "Emerging", action: "Monitor for strengthening signal; add targeted alerts", color: "#EAB308" },
-  { code: "P3", range: "<50", label: "Watchlist", action: "Track quarterly or archive unless a new catalyst appears", color: "#9CA3AF" },
-];
+// Presentation only. The dimensions, weights and tier bands live in
+// src/data/rubric.ts and are shared with /engine — never re-declare them here.
+const RUBRIC_META: Record<ThesisCode, { thesisLabel: string; colorVar: string }> = {
+  GAO: { thesisLabel: "THESIS A", colorVar: "var(--thesis-gao)" },
+  VSRAI: { thesisLabel: "THESIS B", colorVar: "var(--thesis-vsrai)" },
+};
 
 const SIGNAL_LAYERS = [
   {
@@ -166,7 +146,7 @@ function Rubric({
   code: string;
   name: string;
   colorVar: string;
-  rows: { code: string; dim: string; pts: number; note: string }[];
+  rows: readonly RubricDimension[];
   delay: number;
 }) {
   return (
@@ -208,14 +188,14 @@ function Rubric({
             </span>
             <div className="min-w-0 flex-1">
               <span className="mb-0.5 block font-display text-[13px] font-bold tracking-[-0.02em] text-text">
-                {d.dim}
+                {d.name}
               </span>
               <span className="block font-body text-[12px] font-light leading-[1.55] text-text-muted">
                 {d.note}
               </span>
             </div>
             <span className="w-6 shrink-0 text-right font-mono text-[11px] font-semibold tabular-nums text-text-muted">
-              {d.pts}
+              {d.max}
             </span>
           </li>
         ))}
@@ -348,22 +328,17 @@ export function MethodologyPage() {
         </motion.p>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <Rubric
-            thesisLabel="THESIS A"
-            code="GAO"
-            name="Governed Agentic Ops"
-            colorVar="var(--thesis-gao)"
-            rows={GAO_RUBRIC}
-            delay={0}
-          />
-          <Rubric
-            thesisLabel="THESIS B"
-            code="VSRAI"
-            name="Vertical System-of-Record AI"
-            colorVar="var(--thesis-vsrai)"
-            rows={VSRAI_RUBRIC}
-            delay={0.1}
-          />
+          {RUBRICS.map((rubric, i) => (
+            <Rubric
+              key={rubric.thesis}
+              thesisLabel={RUBRIC_META[rubric.thesis].thesisLabel}
+              code={rubric.thesis}
+              name={rubric.name}
+              colorVar={RUBRIC_META[rubric.thesis].colorVar}
+              rows={rubric.dimensions}
+              delay={i * 0.1}
+            />
+          ))}
         </div>
       </section>
 
@@ -382,9 +357,9 @@ export function MethodologyPage() {
         </motion.h2>
 
         <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {TIERS.map((t, i) => (
+          {SSI_TIERS.map((t, i) => (
             <motion.div
-              key={t.code}
+              key={t.priority}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -397,17 +372,17 @@ export function MethodologyPage() {
                   className="font-mono text-[11px] font-semibold tracking-[0.06em]"
                   style={{ color: t.color }}
                 >
-                  {t.code}
+                  {t.priority}
                 </span>
                 <span className="font-display text-[22px] font-extrabold tabular-nums tracking-[-0.04em] text-text">
                   {t.range}
                 </span>
               </div>
               <span className="font-mono text-[11px] font-semibold tracking-[0.04em] text-text">
-                {t.label}
+                {t.band}
               </span>
               <p className="font-body text-[12.5px] font-light leading-[1.55] text-text-muted">
-                {t.action}
+                {t.detail}
               </p>
             </motion.div>
           ))}

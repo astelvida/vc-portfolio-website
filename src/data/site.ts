@@ -7,7 +7,10 @@ export const SITE = {
   pipelineCount: 24,
   thesisCount: 2,
   rubricDimensions: 16,
-  signalLayers: 8,
+  // Scan layers are the sourcing surfaces the Alpha Signal Framework sweeps.
+  // Distinct from the three-layer signal architecture on /methodology, which
+  // gates promotion — the two are different concepts and must not share a name.
+  scanLayers: 8,
   ssiVersion: "v3.0",
   locations: "LDN / BUH",
   email: "sevda@anefi.vc",
@@ -25,5 +28,5 @@ export const HERO_STATS: HeroStat[] = [
   { label: "PIPELINE", value: SITE.pipelineCount },
   { label: "THESES", value: SITE.thesisCount },
   { label: "SSI DIMENSIONS", value: SITE.rubricDimensions },
-  { label: "SIGNAL LAYERS", value: SITE.signalLayers },
+  { label: "SCAN LAYERS", value: SITE.scanLayers },
 ];

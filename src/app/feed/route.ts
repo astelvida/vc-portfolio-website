@@ -1,39 +1,39 @@
 import { SITE } from "@/data/site";
+import { getPosts } from "@/lib/substack";
 
 const BASE_URL = SITE.url;
 
-const POSTS = [
-  {
-    title: "Score the Thesis, Not the Company",
-    description: "Why I built a dual-rubric scoring model.",
-    link: `${BASE_URL}/writing`,
-    pubDate: "Mon, 31 Mar 2026 00:00:00 GMT",
-  },
-  {
-    title: "The Invisible Giant: Europe's Ownership Gap",
-    description:
-      "Europe's structural disadvantage is an early-stage advantage.",
-    link: `${BASE_URL}/writing`,
-    pubDate: "Thu, 12 Feb 2026 00:00:00 GMT",
-  },
-  {
-    title: "SaaSpocalypse: Who Survives Outcome Pricing",
-    description: "Mapping vertical AI on pricing risk.",
-    link: `${BASE_URL}/writing`,
-    pubDate: "Wed, 28 Jan 2026 00:00:00 GMT",
-  },
-];
+export const revalidate = 3600;
+
+// Escapes ]]> so a post title or description can never break out of its CDATA block.
+function cdata(value: string): string {
+  return `<![CDATA[${value.replace(/]]>/g, "]]]]><![CDATA[>")}]]>`;
+}
+
+function toRfc822(pubDate: string): string {
+  const parsed = new Date(pubDate);
+  return Number.isNaN(parsed.getTime())
+    ? new Date().toUTCString()
+    : parsed.toUTCString();
+}
 
 export async function GET() {
-  const items = POSTS.map(
-    (post) => `
+  // Live Substack feed. getPosts() carries its own fallback, so an outage
+  // degrades to real published essays rather than blanking the feed.
+  const posts = await getPosts();
+
+  const items = posts
+    .map(
+      (post) => `
     <item>
-      <title><![CDATA[${post.title}]]></title>
-      <description><![CDATA[${post.description}]]></description>
-      <link>${post.link}</link>
-      <pubDate>${post.pubDate}</pubDate>
+      <title>${cdata(post.title)}</title>
+      <description>${cdata(post.description)}</description>
+      <link>${BASE_URL}/writing/${post.slug}</link>
+      <guid isPermaLink="true">${BASE_URL}/writing/${post.slug}</guid>
+      <pubDate>${toRfc822(post.pubDate)}</pubDate>
     </item>`
-  ).join("");
+    )
+    .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

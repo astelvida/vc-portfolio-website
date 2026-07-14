@@ -450,7 +450,7 @@ export function HomePage() {
                 <span className="text-white">{SITE.thesisCount}</span> RUBRICS
               </span>
               <span>
-                <span className="text-white">{SITE.signalLayers}</span> SIGNAL
+                <span className="text-white">{SITE.scanLayers}</span> SCAN
                 LAYERS
               </span>
             </div>

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const BIO = [
   "Structured products at J.P. Morgan and Morgan Stanley — securitised credit, rating-agency coordination, the institutional discipline of thinking in downside, structure, and incentives before upside.",
   "Production engineering at DAZN, Funding Circle, and Duffel — shipping code that handles real money and real scale. I read repositories, LLM integration patterns, and implementation risk, not just decks.",
-  "Now early-stage European AI through anefi.vc — co-founded out of Antler, with an operator track that runs through a 159-employee family retail ERP rollout in CEE. Two theses, a 24-company pipeline, the SSI v3.0 scoring model. Based between London and Bucharest. Four languages.",
+  `Now early-stage European AI through anefi.vc — co-founded out of Antler, with an operator track that runs through a 159-employee family retail ERP rollout in CEE. Two theses, a ${SITE.pipelineCount}-company pipeline, the SSI ${SITE.ssiVersion} scoring model. Based between London and Bucharest. Four languages.`,
 ];
 
 const CONTRIBUTIONS = [

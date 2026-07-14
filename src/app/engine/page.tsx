@@ -3,7 +3,6 @@ import Link from "next/link";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { TerminalFrame } from "@/components/terminal-frame";
 import { AsciiDivider } from "@/components/ascii-divider";
-import { RUBRICS, SSI_TIERS } from "@/data/rubric";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -102,92 +101,21 @@ export default function EnginePage() {
         </div>
       </section>
 
-      {/* Dual rubric */}
+      {/* Scoring lives on /methodology — this page is how the loop runs, not how it scores. */}
       <section className="border-t border-border py-20 md:py-28">
         <span className="mb-6 block font-mono text-[10px] font-semibold tracking-[0.22em] text-text-muted">
-          [ SSI {SITE.ssiVersion} · DUAL-RUBRIC ]
+          [ SCORING ]
         </span>
-        <h2 className="mb-4 font-display text-[26px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[32px]">
-          Score the thesis, not the company.
+        <h2 className="mb-4 max-w-[640px] font-display text-[26px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[32px]">
+          The engine runs the loop. The rubric decides the score.
         </h2>
-        <p className="mb-12 max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-text-muted">
-          Two rubrics, each on a 100-point scale, never composed into one
-          number. A company is scored under the single thesis it fits — eight
-          dimensions, weighted, every score carrying a primary source.
+        <p className="mb-10 max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-text-muted">
+          Stage 02 hands off to the SSI {SITE.ssiVersion} dual-rubric — two
+          rubrics of {SITE.rubricDimensions / SITE.thesisCount} dimensions each,
+          never composed into one number, every score carrying a primary source.
+          The dimensions, the weights, and the tier that routes the action are
+          documented in full on the methodology page.
         </p>
-
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          {RUBRICS.map((rubric) => (
-            <SectionWrapper key={rubric.thesis}>
-              <TerminalFrame
-                title={`${rubric.thesis} RUBRIC`}
-                meta="MAX 100"
-                className="h-full"
-              >
-                <div className="flex flex-col">
-                  <div className="border-b border-border px-5 py-3">
-                    <span className="font-display text-[15px] font-extrabold tracking-[-0.03em] text-text">
-                      {rubric.name}
-                    </span>
-                  </div>
-                  {rubric.dimensions.map((d) => (
-                    <div
-                      key={d.code}
-                      className="flex items-center gap-3 border-b border-border-subtle px-5 py-2.5 last:border-0"
-                    >
-                      <span className="w-7 shrink-0 font-mono text-[10px] font-semibold text-accent">
-                        {d.code}
-                      </span>
-                      <span className="flex-1 font-body text-[12.5px] text-text">
-                        {d.name}
-                      </span>
-                      <span className="h-1 w-16 shrink-0 bg-border-subtle">
-                        <span
-                          className="block h-full bg-accent"
-                          style={{ width: `${(d.max / 20) * 100}%` }}
-                        />
-                      </span>
-                      <span className="w-6 shrink-0 text-right font-mono text-[11px] font-semibold tabular-nums text-text-muted">
-                        {d.max}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </TerminalFrame>
-            </SectionWrapper>
-          ))}
-        </div>
-      </section>
-
-      {/* Tiers */}
-      <section className="border-t border-border py-20 md:py-28">
-        <span className="mb-6 block font-mono text-[10px] font-semibold tracking-[0.22em] text-text-muted">
-          [ TIER CLASSIFICATION ]
-        </span>
-        <h2 className="mb-12 font-display text-[26px] font-extrabold tracking-[-0.04em] text-text sm:text-[32px]">
-          Score routes the action.
-        </h2>
-
-        <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {SSI_TIERS.map((tier) => (
-            <div key={tier.priority} className="flex flex-col gap-2 bg-surface p-5">
-              <div className="flex items-baseline justify-between">
-                <span className="font-display text-[22px] font-extrabold tabular-nums tracking-[-0.04em] text-accent">
-                  {tier.range}
-                </span>
-                <span className="font-mono text-[10px] font-semibold tracking-[0.1em] text-text-muted">
-                  {tier.priority}
-                </span>
-              </div>
-              <span className="font-mono text-[11px] font-semibold tracking-[0.04em] text-text">
-                {tier.band}
-              </span>
-              <span className="font-body text-[12.5px] font-light leading-[1.55] text-text-muted">
-                {tier.action}
-              </span>
-            </div>
-          ))}
-        </div>
 
         <AsciiDivider label="SIGNALS OVER STORIES" className="mt-16" />
 
