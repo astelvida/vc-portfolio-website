@@ -2,42 +2,50 @@ export interface Project {
   title: string;
   description: string;
   stack: string;
+  status: string;
 }
 
 export const PROJECTS: Project[] = [
   {
-    title: "SoR Matrix Tracker",
+    title: "European AI Scouting OS",
     description:
-      "Live SSI pipeline tracker for the European AI infrastructure shortlist — 24 companies tracked publicly.",
-    stack: "Next.js + Notion ISR",
+      "A private evidence-to-decision workflow for signals, companies, scorecards, memos, falsifiers, and dated next actions.",
+    stack: "Notion + Codex",
+    status: "OPERATING",
   },
   {
-    title: "SSI v3.0 Scoring Model",
+    title: "SSI v4.0",
     description:
-      "Dual-rubric scoring framework — 8 Governed Agentic Ops dimensions and 8 Vertical SoR AI dimensions, separation enforced at the data layer.",
-    stack: "Python + data pipeline",
-  },
-  {
-    title: "Scout → Score → Memo Engine",
-    description:
-      "Three-agent sourcing-to-memo loop: scout signals, score against the rubric, draft the IC-style memo.",
-    stack: "Claude Code + MCP",
+      "An evidence-led investment method that keeps thesis fit, confidence, risk overlays, falsifiers, and decisions distinct.",
+    stack: "Research method",
+    status: "CALIBRATING",
   },
   {
     title: "Signals Over Stories",
-    description: "Investment publication on Governed Agentic Ops and Vertical System-of-Record AI.",
-    stack: "Substack",
+    description:
+      "Public research on European AI political economy, venture formation, governed agents, and vertical systems of record.",
+    stack: "Research + writing",
+    status: "PUBLISHING",
   },
   {
-    title: "Portfolio Site",
+    title: "Public Research Layer",
     description:
-      "This site. Next.js 16 + Notion CMS + Substack RSS. Brutalist-editorial terminal design system.",
-    stack: "Next.js 16 + Substack RSS",
+      "A publication and portfolio layer that converts selected, source-backed work into useful public artefacts without exposing private company decisions.",
+    stack: "Research + product",
+    status: "BUILDING",
   },
   {
-    title: "VC Research Skill Suite",
+    title: "Public Investment Portfolio",
     description:
-      "Proprietary Claude skills for filings parsing, procurement signal extraction, and marketplace co-sell detection.",
-    stack: "Claude Skills + MCP",
+      "This website: a deliberately public layer for theses, methodology, writing, and selected proof of work. Private company decisions stay private.",
+    stack: "Next.js 16 + Vercel",
+    status: "PUBLIC",
+  },
+  {
+    title: "Research Automation",
+    description:
+      "Bounded monitoring and synthesis workflows for primary-source discovery, verification, and recurring research briefs.",
+    stack: "Codex + connected sources",
+    status: "BUILDING",
   },
 ];

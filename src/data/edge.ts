@@ -35,5 +35,5 @@ export interface CareerEra {
 export const CAREER_ARC: CareerEra[] = [
   { period: "2013–14", phase: "FINANCE", detail: "Morgan Stanley · J.P. Morgan SPG" },
   { period: "2017–22", phase: "ENGINEERING", detail: "DAZN · Funding Circle · Duffel" },
-  { period: "2023–NOW", phase: "VENTURE", detail: "Independent · anefi.vc" },
+  { period: "2023–NOW", phase: "VENTURE", detail: "Independent European AI research" },
 ];

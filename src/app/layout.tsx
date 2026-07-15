@@ -40,11 +40,11 @@ export const metadata: Metadata = {
     template: "%s | Sevda Anefi",
   },
   description:
-    "Early-stage European AI investor-operator. Two investment theses scored by the proprietary SSI v3.0 dual-rubric signal model.",
+    "European AI investor-operator researching political economy, venture formation, Governed Agentic Ops, and Vertical System-of-Record AI.",
   openGraph: {
     title: "Sevda Anefi — Early-Stage European AI",
     description:
-      "Two investment theses, scored by the SSI v3.0 dual-rubric signal model.",
+      "Two European AI investment theses, a public SSI v4.0 methodology, and a 90-day research agenda.",
     type: "website",
     locale: "en_US",
   },
@@ -77,19 +77,19 @@ export default function RootLayout({
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
                 </span>
-                SYSTEM ACTIVE
+                RESEARCH ACTIVE
               </span>
               <span className="hidden text-text-faint md:inline">|</span>
-              <span className="hidden md:inline">{SITE.pipelineCount} TRACKED</span>
+              <span className="hidden md:inline">SSI {SITE.ssiVersion}</span>
               <span className="hidden text-text-faint md:inline">|</span>
-              <span className="hidden md:inline">{SITE.thesisCount} THESES LIVE</span>
+              <span className="hidden md:inline">{SITE.thesisCount} ACTIVE THESES</span>
               <span className="text-text-faint">|</span>
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
                 </span>
-                SOURCING
+                90-DAY FOCUS
               </span>
             </div>
             <div className="hidden items-center gap-3 font-mono text-[9px] tracking-[0.06em] text-text-muted sm:flex">

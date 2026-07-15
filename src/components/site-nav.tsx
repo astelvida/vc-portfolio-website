@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { href: "/theses", label: "THESES" },
   { href: "/methodology", label: "METHODOLOGY" },
   { href: "/engine", label: "ENGINE" },
-  { href: "/signals", label: "SIGNALS" },
+  { href: "/research", label: "RESEARCH" },
   { href: "/writing", label: "WRITING" },
   { href: "/projects", label: "PROJECTS" },
   { href: "/about", label: "ABOUT" },

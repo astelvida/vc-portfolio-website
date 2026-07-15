@@ -1,15 +1,13 @@
 "use client";
 
-import { SIGNALS } from "@/data/signals";
+import { TICKER_ITEMS } from "@/data/signals";
 
 interface TickerProps {
   variant?: "light" | "dark";
 }
 
 export function Ticker({ variant = "light" }: TickerProps) {
-  const content = SIGNALS.map(
-    (s) => `${s.company} · SSI ${s.ssi} · ${s.thesis} · ${s.hq}`
-  ).join("    —    ");
+  const content = TICKER_ITEMS.join("    —    ");
   const isDark = variant === "dark";
 
   return (

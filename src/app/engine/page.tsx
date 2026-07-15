@@ -8,7 +8,7 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "The Scouting Engine",
   description:
-    "Scout → Score → Memo. A three-agent loop on Claude + Notion MCP that sources pre-consensus European AI and scores it against the SSI v3.0 dual-rubric.",
+    "Evidence → Signal → Scorecard → Decision. A private scouting workflow with a public SSI v4.0 operating contract.",
   openGraph: {
     title: "The Scouting Engine | Sevda Anefi",
     description:
@@ -20,20 +20,20 @@ const STAGES = [
   {
     step: "01",
     label: "SCOUT",
-    head: "regscan · ghscan · procscan · talentscan · grantscan",
-    body: "Atomic signals captured from regulators, repositories, procurement portals, hiring moves, and grant feeds — logged to the Signals database.",
+    head: "primary sources · technical artefacts · buyer evidence",
+    body: "Atomic evidence is captured with a source date, verification date, and an explicit Fact, Inference, or Uncertainty label.",
   },
   {
     step: "02",
     label: "SCORE",
-    head: "SSI v3.0 dual-rubric",
-    body: "Each company is assigned a single thesis, then scored against that rubric only — separation enforced at the data layer. No score without a source.",
+    head: "SSI v4.0 · one primary thesis",
+    body: "Thesis fit, evidence confidence, risk overlays, and falsifier state remain distinct. A triggered falsifier overrides the score.",
   },
   {
     step: "03",
     label: "MEMO",
     head: "IC-style investment memo",
-    body: "Falsifier register, kill criteria, evidence table, and a dated next action — drafted under the canonical Memos template.",
+    body: "The evidence table, risks, falsifiers, decision, and the cheapest next verification are assembled into an IC-style memo.",
   },
 ];
 
@@ -55,10 +55,10 @@ export default function EnginePage() {
             <span className="text-accent">MEMO.</span>
           </h1>
           <p className="max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-white/55 md:text-[16px]">
-            Regulation-in sourcing. The engine starts from regulatory and
-            workflow structure, finds the European companies building into it,
-            scores each against the thesis it fits, and drafts the memo — a
-            three-agent loop running on Claude and the Notion MCP.
+            The private operating system starts with evidence, promotes only
+            material signals, assigns one primary thesis, and routes each
+            decision to a dated next verification. The public site shows the
+            method, not the company-level pipeline.
           </p>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default function EnginePage() {
           [ THE LOOP ]
         </span>
         <h2 className="mb-12 max-w-[640px] font-display text-[26px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[32px]">
-          One validated company surfaces roughly three more.
+          One bounded workflow from evidence to decision.
         </h2>
 
         <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
@@ -107,14 +107,13 @@ export default function EnginePage() {
           [ SCORING ]
         </span>
         <h2 className="mb-4 max-w-[640px] font-display text-[26px] font-extrabold leading-[1.1] tracking-[-0.04em] text-text sm:text-[32px]">
-          The engine runs the loop. The rubric decides the score.
+          The engine runs the loop. Evidence earns the decision.
         </h2>
         <p className="mb-10 max-w-[620px] font-body text-[15px] font-light leading-[1.7] text-text-muted">
-          Stage 02 hands off to the SSI {SITE.ssiVersion} dual-rubric — two
-          rubrics of {SITE.rubricDimensions / SITE.thesisCount} dimensions each,
-          never composed into one number, every score carrying a primary source.
-          The dimensions, the weights, and the tier that routes the action are
-          documented in full on the methodology page.
+          Stage 02 hands off to SSI {SITE.ssiVersion}. Exactly one primary thesis
+          is assigned before scoring. Evidence confidence, commercial and
+          technical risk, regulatory exposure, and falsifiers are evaluated
+          separately so a neat number cannot conceal a weak decision.
         </p>
 
         <AsciiDivider label="SIGNALS OVER STORIES" className="mt-16" />
@@ -126,10 +125,10 @@ export default function EnginePage() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/signals"
+              href="/research"
               className="inline-flex items-center gap-2 bg-ink px-6 py-3 font-mono text-[11px] font-semibold tracking-[0.06em] text-white transition-colors hover:bg-ink-raised"
             >
-              SEE THE PIPELINE &rarr;
+              RESEARCH AGENDA &rarr;
             </Link>
             <Link
               href="/methodology"

@@ -4,7 +4,7 @@ import { HomePage } from "@/components/home-page";
 export const metadata: Metadata = {
   title: "Sevda Anefi — Early-Stage European AI",
   description:
-    "Early-stage European AI investor-operator. Two conviction-backed theses — Governed Agentic Ops and Vertical System-of-Record AI. Signals over stories.",
+    "European AI investor-operator. Two active theses, a public SSI v4.0 methodology, and research across political economy, venture, and company-building.",
 };
 
 export default function Page() {

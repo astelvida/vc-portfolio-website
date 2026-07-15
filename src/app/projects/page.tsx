@@ -8,10 +8,10 @@ import { getRepos } from "@/lib/github";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Shipped tools and systems — the SoR Matrix tracker, the SSI scoring model, the Scout → Score → Memo engine.",
+    "Selected systems, methods, research products, and open-source work behind European AI investing.",
   openGraph: {
     title: "Projects | Sevda Anefi",
-    description: "Shipped tools and systems for early-stage European AI investing.",
+    description: "Selected proof of work for early-stage European AI investing and research.",
   },
 };
 
@@ -27,18 +27,19 @@ export default async function ProjectsPage() {
             [ PROJECTS ]
           </span>
           <h1 className="font-display text-[40px] font-extrabold leading-[1.0] tracking-[-0.045em] text-text sm:text-[54px] md:text-[64px]">
-            Tools that <span className="text-accent">compound.</span>
+            Proof of work that <span className="text-accent">compounds.</span>
           </h1>
           <p className="max-w-[560px] font-body text-[15px] font-light leading-[1.7] text-text-muted md:text-[16px]">
-            The systems behind the sourcing, scoring, and memo work — built so
-            conviction is repeatable, not improvised.
+            Selected systems and experiments behind the research, sourcing,
+            scoring, and memo work. Statuses are explicit; private investment
+            records stay out of the public site.
           </p>
         </div>
       </SectionWrapper>
 
       {/* Project grid */}
       <div className="flex flex-col gap-8">
-        <AsciiDivider label="SHIPPED" />
+        <AsciiDivider label="SELECTED WORK" />
         <div className="grid grid-cols-1 gap-px border border-border bg-border md:grid-cols-2">
           {PROJECTS.map((project, i) => (
             <SectionWrapper key={project.title} delay={i * 60}>
@@ -48,7 +49,7 @@ export default async function ProjectsPage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-mono text-[9px] tracking-[0.1em] text-text-faint">
-                    {project.stack}
+                    {project.status} · {project.stack}
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col gap-2 p-6">

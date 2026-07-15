@@ -1,27 +1,48 @@
-export type ThesisCode = "GAO" | "VSRAI";
-
-export interface Signal {
-  company: string;
-  ssi: number;
-  thesis: ThesisCode;
-  hq: string;
-  sector: string;
-  stage: string;
-  priority: "P0" | "P1" | "P2";
+export interface ResearchLens {
+  code: string;
+  title: string;
+  question: string;
+  outputs: string;
 }
 
-// Top of the live pipeline, reconciled 7 Jun 2026 against the canonical
-// 🎯 Companies database under the Scouting Engine (scored set, ranked by Top
-// Score). SSI = Signal Strength Index under the SSI v3.0 dual-rubric. No score
-// without a source.
-export const SIGNALS: Signal[] = [
-  { company: "TORTUS AI", ssi: 81, thesis: "VSRAI", hq: "United Kingdom", sector: "Healthcare AI", stage: "Seed", priority: "P0" },
-  { company: "Tandem Health", ssi: 80, thesis: "VSRAI", hq: "Sweden", sector: "Healthcare AI", stage: "Series A", priority: "P0" },
-  { company: "Depowise", ssi: 79, thesis: "VSRAI", hq: "Estonia", sector: "FinServ AI", stage: "Seed", priority: "P1" },
-  { company: "Raidium", ssi: 75.5, thesis: "VSRAI", hq: "France", sector: "Healthcare AI", stage: "Seed", priority: "P1" },
-  { company: "Giskard", ssi: 74, thesis: "GAO", hq: "France", sector: "AI Governance", stage: "Seed", priority: "P1" },
-  { company: "LatticeFlow AI", ssi: 72, thesis: "GAO", hq: "Switzerland", sector: "AI Governance", stage: "Series A", priority: "P1" },
-  { company: "Tibo Energy", ssi: 70, thesis: "VSRAI", hq: "Netherlands", sector: "Energy AI", stage: "Seed", priority: "P1" },
-  { company: "Deeploy", ssi: 68, thesis: "GAO", hq: "Netherlands", sector: "AI Governance", stage: "Seed", priority: "P1" },
-  { company: "Modulos AG", ssi: 68, thesis: "GAO", hq: "Switzerland", sector: "AI Governance", stage: "Series A", priority: "P1" },
+// Public research agenda only. Company-level sourcing, scores, priorities, and
+// decisions stay in the private investment operating system.
+export const RESEARCH_LENSES: ResearchLens[] = [
+  {
+    code: "POL",
+    title: "European AI political economy",
+    question:
+      "How do industrial policy, sovereignty, regulation, procurement, and state capacity shape where European AI companies can win?",
+    outputs: "Dated policy notes · market maps · capital-allocation implications",
+  },
+  {
+    code: "ECO",
+    title: "AI and the European economy",
+    question:
+      "Where does AI change productivity, labour, firm formation, and institutional capacity rather than merely software spend?",
+    outputs: "Economic briefs · sector comparisons · falsifiable theses",
+  },
+  {
+    code: "VC",
+    title: "Venture formation and incentives",
+    question:
+      "Which fund structures, ownership patterns, and information advantages matter across the UK, CEE, and Romania?",
+    outputs: "Fund maps · non-obvious signals · investment decision criteria",
+  },
+  {
+    code: "BLD",
+    title: "Scouting product + public credibility",
+    question:
+      "How can a private investment operating system generate useful, source-backed public work without exposing company decisions?",
+    outputs: "Product iterations · public methodology · selected research artefacts",
+  },
+];
+
+export const TICKER_ITEMS = [
+  "EUROPEAN AI POLITICAL ECONOMY",
+  "GOVERNED AGENTIC OPS",
+  "VERTICAL SYSTEM-OF-RECORD AI",
+  "VENTURE FORMATION",
+  "SCOUTING PRODUCT",
+  "FACT · INFERENCE · UNCERTAINTY",
 ];

@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About | Sevda Anefi",
     description:
-      "From J.P. Morgan and Morgan Stanley to DAZN and Duffel to anefi.vc.",
+      "From institutional finance to production engineering to independent European AI research.",
   },
 };
 
 const BIO = [
   "Structured products at J.P. Morgan and Morgan Stanley — securitised credit, rating-agency coordination, the institutional discipline of thinking in downside, structure, and incentives before upside.",
   "Production engineering at DAZN, Funding Circle, and Duffel — shipping code that handles real money and real scale. I read repositories, LLM integration patterns, and implementation risk, not just decks.",
-  `Now early-stage European AI through anefi.vc — co-founded out of Antler, with an operator track that runs through a 159-employee family retail ERP rollout in CEE. Two theses, a ${SITE.pipelineCount}-company pipeline, the SSI ${SITE.ssiVersion} scoring model. Based between London and Bucharest. Four languages.`,
+  `Now focused on early-stage European AI through independent research and company-building. Two active theses, the SSI ${SITE.ssiVersion} evidence-led method, and a public research agenda across AI political economy and venture. Based between London and Bucharest. Four languages.`,
 ];
 
 const CONTRIBUTIONS = [
@@ -37,7 +37,7 @@ const CONTRIBUTIONS = [
   },
   {
     label: "REPEATABLE SYSTEMS",
-    body: "Live pipelines, scoring frameworks, memo templates, agentic sourcing loops — not static notes.",
+    body: "Evidence workflows, scoring frameworks, memo templates, and bounded research loops — not static notes.",
   },
 ];
 

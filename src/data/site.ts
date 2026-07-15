@@ -1,32 +1,24 @@
-// Cross-cutting facts — single source so headline numbers cannot drift.
-// Reconciled 21 May 2026 against the canonical Notion "AI VC Investor Profile"
-// and the live Companies database under the Scouting Engine.
-
 export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://vc-portfolio-website.vercel.app",
-  pipelineCount: 24,
   thesisCount: 2,
-  rubricDimensions: 16,
-  // Scan layers are the sourcing surfaces the Alpha Signal Framework sweeps.
-  // Distinct from the three-layer signal architecture on /methodology, which
-  // gates promotion — the two are different concepts and must not share a name.
-  scanLayers: 8,
-  ssiVersion: "v3.0",
+  researchLenses: 4,
+  focusDays: 90,
+  ssiVersion: "v4.0",
   locations: "LDN / BUH",
-  email: "sevda@anefi.vc",
+  email: "sevda.m.anefi@gmail.com",
   substack: "signalsoverstories.substack.com",
   linkedin: "linkedin.com/in/sevda-anefi",
 } as const;
 
 export interface HeroStat {
   label: string;
-  value: number;
-  suffix?: string;
+  value: string;
+  detail: string;
 }
 
 export const HERO_STATS: HeroStat[] = [
-  { label: "PIPELINE", value: SITE.pipelineCount },
-  { label: "THESES", value: SITE.thesisCount },
-  { label: "SSI DIMENSIONS", value: SITE.rubricDimensions },
-  { label: "SCAN LAYERS", value: SITE.scanLayers },
+  { label: "ACTIVE THESES", value: "02", detail: "GAO + VSRAI" },
+  { label: "RESEARCH LENSES", value: "04", detail: "Political economy to product" },
+  { label: "FOCUS WINDOW", value: "90D", detail: "Public proof of work" },
+  { label: "METHOD", value: "SSI 4", detail: "Evidence before score" },
 ];
