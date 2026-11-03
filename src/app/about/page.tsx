@@ -8,7 +8,7 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Structured products, production engineering, early-stage European AI. Based between London and Bucharest.",
+    "Independent European software and AI research, informed by finance, production engineering and founder/operator experience. Based in Bucharest.",
   openGraph: {
     title: "About | Sevda Anefi",
     description:
@@ -17,27 +17,27 @@ export const metadata: Metadata = {
 };
 
 const BIO = [
-  "Structured products at J.P. Morgan and Morgan Stanley — securitised credit, rating-agency coordination, the institutional discipline of thinking in downside, structure, and incentives before upside.",
-  "Production engineering at DAZN, Funding Circle, and Duffel — shipping code that handles real money and real scale. I read repositories, LLM integration patterns, and implementation risk, not just decks.",
-  `Now focused on early-stage European AI through independent research and company-building. Two active theses, the SSI ${SITE.ssiVersion} evidence-led method, and a public research agenda across AI political economy and venture. Based between London and Bucharest. Four languages.`,
+  "At J.P. Morgan I worked in securitised-products origination; at Morgan Stanley I completed a sales-and-trading summer analyst placement. I later shipped production software at DAZN, Funding Circle and Duffel.",
+  "My founder/operator experience includes Zemedy, Fluento through Antler's London cohort, and founding and running Khaleea Jewelry. At my family's jewellery retailer, I led ERP implementation, negotiated custom per-gram gold pricing and trained staff as paper routines moved into software.",
+  "I now research early-stage European software and AI, testing technical credibility, buyer incentives and workflow adoption. Based in Bucharest, I am pursuing European and UK Analyst/Associate roles. My work is independent proof of work; I have no institutional VC investing track record.",
 ];
 
 const CONTRIBUTIONS = [
   {
-    label: "UNDERINDEXED SOURCING",
-    body: "European AI surfaced before it is obvious — across CEE and technical founder corridors.",
+    label: "EVIDENCE-LED SOURCING",
+    body: "Company discovery through attributable public signals across Europe. Romania and CEE are a developing sourcing lens, not demonstrated proprietary access.",
   },
   {
     label: "TECHNICAL DILIGENCE",
     body: "Product depth, LLM integration, infra claims and repo artifacts, translated into an investment view.",
   },
   {
-    label: "REGULATORY JUDGMENT",
-    body: "EU AI Act, DORA, AMLA and procurement read as category-creation signals, not admin noise.",
+    label: "ADOPTION JUDGMENT",
+    body: "Founder and ERP experience informs questions about implementation burden, data quality, budget ownership and the alternatives a buyer already uses.",
   },
   {
     label: "REPEATABLE SYSTEMS",
-    body: "Evidence workflows, scoring frameworks, memo templates, and bounded research loops — not static notes.",
+    body: "Research tools organise sources, unknowns and written decisions. Their usefulness is separate from a demonstrated sourcing or investing track record.",
   },
 ];
 
@@ -70,11 +70,10 @@ export default function AboutPage() {
             <span className="text-accent">company-building.</span>
           </h1>
           <p className="max-w-[600px] font-body text-[15px] font-light leading-[1.7] text-text-muted md:text-[16px]">
-            Sevda Anefi — a European AI investor-operator combining
-            institutional finance, software engineering, and CEE market access.
-            That mix lets me assess markets, pressure-test product claims, read
-            technical systems, and turn fragmented signals into investment
-            judgment.
+            Sevda Anefi — an independent European VC researcher and writer,
+            former software engineer, founder and operator. I combine finance
+            training, production engineering and operating experience to examine
+            technical credibility, workflow adoption and commercial incentives.
           </p>
         </div>
       </SectionWrapper>

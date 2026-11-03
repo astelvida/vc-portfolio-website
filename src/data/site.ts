@@ -5,7 +5,7 @@ export const SITE = {
   focusDays: 90,
   ssiVersion: "v4.0",
   locations: "LDN / BUH",
-  email: "sevda.m.anefi@gmail.com",
+  email: "sevda@signalsoverstories.com",
   substack: "signalsoverstories.substack.com",
   linkedin: "linkedin.com/in/sevda-anefi",
 } as const;

@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s | Sevda Anefi",
   },
   description:
-    "European AI investor-operator researching political economy, venture formation, Governed Agentic Ops, and Vertical System-of-Record AI.",
+    "Independent European VC researcher and writer combining finance training, production software engineering and founder/operator experience.",
   openGraph: {
     title: "Sevda Anefi — Early-Stage European AI",
     description:

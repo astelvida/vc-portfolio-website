@@ -90,10 +90,10 @@ export function HomePage() {
             transition={{ duration: 0.6, delay: 0.9, ease: EASE }}
             className="mb-12 max-w-[650px] font-body text-[15px] font-light leading-[1.7] text-white/55 md:mb-16 md:text-[17px]"
           >
-            European AI investor-operator working across political economy,
-            venture, software, and company-building. The next 90 days turn that
-            work into public, dated proof: sharper theses, credible research,
-            product experiments, and better investment judgment.
+            Independent European VC researcher and writer, with finance,
+            production software engineering and founder/operator experience.
+            I examine technical credibility, buyer incentives and workflow
+            adoption in early-stage European software and AI.
           </motion.p>
 
           <motion.div
