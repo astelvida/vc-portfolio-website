@@ -1,6 +1,6 @@
 # Signals Over Stories
 
-**[Sevda Anefi](https://vc-portfolio-website.vercel.app/)** — European AI investor-operator working across venture, software, political economy, and company-building.
+**[Sevda Anefi](https://vc-portfolio-website.vercel.app/)** — independent European VC researcher and writer; former software engineer, founder and operator. Independent proof of work, with no institutional VC investing track record. Romania and CEE are a developing sourcing lens within Europe.
 
 **Live → [vc-portfolio-website.vercel.app](https://vc-portfolio-website.vercel.app/)**
 
